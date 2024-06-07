@@ -3,7 +3,9 @@
 //  import InfoNear from './InfoNear'
 import InfoWeather from './InfoWeather'
 import InfoCompare from './InfoCompare'
- 
+import InfoReach from './InfoReach'
+import InfoVisit from './InfoVisit'
+import InfoList from './InfoList'
  
  
  export default function Info() {
@@ -12,6 +14,9 @@ import InfoCompare from './InfoCompare'
         <InfoHead/>
         <InfoWeather/>
         <InfoCompare/>
+        <InfoReach/>
+     
+        <InfoList/>
         {/* <InfoNear/> */}
      </div>
    )
