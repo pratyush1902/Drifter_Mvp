@@ -2,4 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+
  

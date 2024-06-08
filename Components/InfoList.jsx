@@ -115,42 +115,42 @@ const ExplorePlaces = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-4 mt-8">Great places to Explore</h1>
+    <h1 className="text-2xl font-bold text-center mb-8">Great places to Explore</h1>
      <InfoVisit/>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {places.slice(0, visibleCards).map((place, index) => (
-          <div key={index} className="border rounded-lg overflow-hidden shadow-lg">
-            <img src={place.image} alt={place.name} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              <div className="flex justify-between items-center mb-2">
-                <span className={`text-sm font-semibold px-2 py-1 rounded ${place.status === 'Open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                  {place.type}
-                </span>
-                <span className={`text-sm font-semibold px-2 py-1 rounded ${place.status === 'Open' ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'}`}>
-                  {place.status}
-                </span>
-              </div>
-              <h2 className="text-lg font-bold mb-2">{place.name}</h2>
-              {place.address && <p className="text-sm text-gray-600">{place.address}</p>}
-              {place.phone && <p className="text-sm text-gray-600">{place.phone}</p>}
-              {place.price && <p className="text-sm text-green-600">Starts at {place.price} for 1 person</p>}
-              {place.recommended && <span className="inline-block text-xs font-semibold text-pink-600 mt-2">Recommended</span>}
-              <a href="#" className="block mt-4 text-blue-600">View detail →</a>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {places.slice(0, visibleCards).map((place, index) => (
+        <div key={index} className="card border rounded-lg overflow-hidden shadow-lg">
+          <img src={place.image} alt={place.name} className="w-full h-48 object-cover" />
+          <div className="p-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className={`text-sm font-semibold px-2 py-1 rounded ${place.status === 'Open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                {place.type}
+              </span>
+              <span className={`text-sm font-semibold px-2 py-1 rounded ${place.status === 'Open' ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900'}`}>
+                {place.status}
+              </span>
             </div>
+            <h2 className="text-lg font-bold mb-2">{place.name}</h2>
+            {place.address && <p className="text-sm text-gray-600">{place.address}</p>}
+            {place.phone && <p className="text-sm text-gray-600">{place.phone}</p>}
+            {place.price && <p className="text-sm text-green-600">Starts at {place.price} for 1 person</p>}
+            {place.recommended && <span className="inline-block text-xs font-semibold text-pink-600 mt-2">Recommended</span>}
+            <a href="#" className="block mt-4 text-blue-600">View detail →</a>
           </div>
-        ))}
-      </div>
-      {visibleCards < places.length && (
-        <div className="text-center mt-8">
-          <button
-            onClick={loadMoreCards}
-            className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
-          >
-            Load More
-          </button>
         </div>
-      )}
+      ))}
     </div>
+    {visibleCards < places.length && (
+      <div className="text-center mt-8">
+        <button
+          onClick={loadMoreCards}
+          className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+        >
+          Load More
+        </button>
+      </div>
+    )}
+  </div>
   );
 };
 

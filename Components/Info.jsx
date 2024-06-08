@@ -1,6 +1,6 @@
  import React from 'react'
  import InfoHead from './InfoHead'
-//  import InfoNear from './InfoNear'
+ import InfoNear from './InfoNear'
 import InfoWeather from './InfoWeather'
 import InfoCompare from './InfoCompare'
 import InfoReach from './InfoReach'
@@ -17,7 +17,7 @@ import InfoList from './InfoList'
         <InfoReach/>
      
         <InfoList/>
-        {/* <InfoNear/> */}
+        <InfoNear/>
      </div>
    )
  }

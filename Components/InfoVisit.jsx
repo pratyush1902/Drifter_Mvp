@@ -1,48 +1,37 @@
- 'use client'
-
-
-
- // components/CategorySelector.js
-
+'use client'
 import { useState } from 'react';
 
-export default function CategorySelector() {
-  const categories = [
-    { name: 'Sports', color: 'bg-red-500' },
-    { name: 'Music', color: 'bg-green-500' },
-    { name: 'Technology', color: 'bg-blue-500' },
-    { name: 'Art', color: 'bg-yellow-500' },
-    { name: 'Science', color: 'bg-purple-500' }
-  ];
+const categories = [
+  { label: 'Beaches', icon: 'https://static-00.iconduck.com/assets.00/beach-icon-512x441-ow4q6h9s.png' },
+  { label: 'trek', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwY2WteL2O9Tbk66h1tHTgtv6OYfsG5_lFw&s' },
+  { label: ' Touristy', icon: 'https://cdn-icons-png.flaticon.com/512/7603/7603144.png' },
+  { label: 'Camping', icon: 'https://cdn-icons-png.flaticon.com/512/9173/9173952.png' },
+  { label: 'Off beat', icon: 'https://static.vecteezy.com/system/resources/previews/005/988/954/original/hidden-icon-free-vector.jpg' },
+ 
+ 
+];
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const toggleCategory = (category) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((cat) => cat !== category));
-    } else {
-      setSelectedCategories([...selectedCategories, category]);
-    }
-  };
+const Home = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center space-y-4 md:space-y-0 md:space-x-4">
-        <h1 className="text-xl font-bold">Category:</h1>
-        <div className="flex flex-wrap justify-center md:justify-start space-x-4">
-          {categories.map((category) => (
-            <button
-              key={category.name}
-              onClick={() => toggleCategory(category.name)}
-              className={`px-4 py-2 rounded-lg text-white m-1 ${
-                selectedCategories.includes(category.name) ? category.color : 'bg-gray-300'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
-      </div>
+    <div className="flex flex-wrap justify-center p-4">
+      {categories.map((category) => (
+        <button
+          key={category.label}
+          onClick={() => setSelectedCategory(category.label)}
+          className={`flex items-center justify-center p-4 m-2 rounded-lg transition-colors duration-300 ${
+            selectedCategory === category.label
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200 text-black'
+          }`}
+        >
+          <img src={category.icon} alt={category.label} className="w-6 h-6 mr-2" />
+          <span>{category.label}</span>
+        </button>
+      ))}
     </div>
   );
-}
+};
+
+export default Home;
