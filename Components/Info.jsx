@@ -4,8 +4,10 @@
 import InfoWeather from './InfoWeather'
 import InfoCompare from './InfoCompare'
 import InfoReach from './InfoReach'
-import InfoVisit from './InfoVisit'
+import InfoScam from './InfoScam'
 import InfoList from './InfoList'
+import Transport from './InfoLocalTransport'
+import Credit from './InfoCredit'
  
  
  export default function Info() {
@@ -14,10 +16,14 @@ import InfoList from './InfoList'
         <InfoHead/>
         <InfoWeather/>
         <InfoCompare/>
+        <Transport/>
         <InfoReach/>
      
         <InfoList/>
         <InfoNear/>
+        <InfoScam/>
+        <Credit/>
+        
      </div>
    )
  }

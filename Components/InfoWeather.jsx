@@ -1,10 +1,10 @@
 import React from 'react';
-import { SunIcon, ArrowUpIcon, ArrowDownIcon, UsersIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import { SunIcon,  CloudIcon, ArrowDownIcon, UsersIcon, CalendarIcon } from '@heroicons/react/24/outline';
 
 const WeatherTourismCard = () => {
   return (
     <div className='min-h-screen flex items-center justify-center mt-[-700px] '>
-    <div className="w-4/5 mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="w-4/5 mx-auto   shadow-lg rounded-lg overflow-hidden "style={{ backgroundColor: '#C5EBAA' }}>
       <div className="px-6 py-4">
         <div className="mb-4">
           <h3 className="text-lg leading-6 font-medium text-gray-900 flex items-center mb-2">
@@ -17,10 +17,10 @@ const WeatherTourismCard = () => {
               <p>Average Temperature: 22°C</p>
             </div>
             <div className="flex items-center ">
-              <ArrowUpIcon className="h-5 w-5 text-red-500 mr-2" />
-              <p>Max Temperature: 30°C</p>
+              <CloudIcon className="h-5 w-5 text-red-500 mr-2" />
+              <p>Rainfall Chances: yes</p>
               <ArrowDownIcon className="h-5 w-5 text-blue-500 mx-2" />
-              <p>Min Temperature: 15°C</p>
+              <p> Snowfall Chances: No</p>
             </div>
           </div>
         </div>

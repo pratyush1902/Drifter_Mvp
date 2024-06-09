@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 
 const images = [
-  { src: "https://images.unsplash.com/photo-1600762516498-761775b86af7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "First Image" },
-  { src: "https://images.unsplash.com/photo-1611185980579-a1173a465e37?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Second Image" },
-  { src: "https://images.unsplash.com/photo-1612038032672-b94a10ce7ebd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Third Image" },
+  { src: "https://images.unsplash.com/photo-1600762516498-761775b86af7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Shimla" },
+  { src: "https://images.unsplash.com/photo-1717684566059-4d16b456c72a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Shimla" },
+  { src: "https://images.unsplash.com/photo-1612038032672-b94a10ce7ebd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Shimla" },
   // Add more image objects here
 ];
 
@@ -31,7 +31,7 @@ const Carousel = () => {
             className="w-full  h-[50%] object-cover    "
           />
           <div className="absolute inset-0 flex items-start justify-center pt-4">
-            <h2 className="text-white text-2xl md:text-4xl">{image.text}</h2>
+            <h2 className="text-white text-2xl md:text-[120px] m-4 mt-16">{image.text}</h2>
           </div>
         </div>
       ))}
