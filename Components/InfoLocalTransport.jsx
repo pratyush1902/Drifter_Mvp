@@ -29,9 +29,11 @@ const LocalTransport = () => {
   const [activeTab, setActiveTab] = useState('buses');
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-4/5 bg-white p-8 rounded-lg shadow-lg -mt-16">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Local Transport</h1>
+    <div> 
+        <h1 className="text-4xl font-bold  text-center mt-8 text-gray-800">Local Transport</h1>
+    <div className="flex justify-center items-center min-h-screen bg-white " >
+      <div className="w-4/5 bg-white p-8 rounded-lg shadow-lg -mt-36">
+      
         <div className="flex justify-around mb-4">
           {Object.keys(transportData).map((mode) => (
             <button
@@ -52,7 +54,7 @@ const LocalTransport = () => {
           <p className="mb-4 text-gray-600">{transportData[activeTab].description}</p>
           <ul className="space-y-2">
             {transportData[activeTab].details.map((detail, index) => (
-              <li key={index} className="bg-gray-200 p-4 rounded-lg shadow-md">
+              <li key={index} className="  p-4 rounded-lg shadow-md" style={{backgroundColor:'#9DDE8B'}}>
                 {Object.entries(detail).map(([key, value]) => (
                   <p key={key} className="text-gray-800">
                     <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
@@ -63,6 +65,7 @@ const LocalTransport = () => {
           </ul>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const destinations = [
 const DestinationList = () => {
   return (
     <div className="flex flex-col items-center  ">
-      <h1 className="text-5xl font-bold  -mt-24 mb-10">Search destination by Category</h1>
+      <h1 className="text-4xl font-bold  mt-16 mb-10">Search destination by Category</h1>
       {/* <button className="bg-purple-600 text-white px-4 py-2 rounded mb-6">View all</button> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[90%]">
         {destinations.map((destination, index) => (

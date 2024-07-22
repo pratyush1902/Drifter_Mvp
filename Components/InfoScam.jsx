@@ -1,38 +1,89 @@
-// components/PotentialScams.js
-import React from 'react';
+ 'use client'
+ 
 
-const PotentialScams = () => {
+import { useState } from 'react';
+
+const tabs = [
+  {
+    id: 1,
+    title: 'Travel Tips',
+    content: [
+      'Pack light and smart.',
+      'Always carry a portable charger.',
+      'Learn basic phrases in the local language.',
+      'Keep digital copies of important documents.',
+      'Stay hydrated and carry snacks.',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Tips to Save Money',
+    content: [
+      'Book flights in advance.',
+      'Travel during off-peak seasons.',
+      'Use public transportation.',
+      'Stay in budget accommodations.',
+      'Cook your own meals when possible.',
+    ],
+  },
+  {
+    id: 3,
+    title: 'Scam Safety',
+    content: [
+      'Avoid sharing personal information.',
+      'Beware of too-good-to-be-true deals.',
+      'Use secure payment methods.',
+      'Trust your instincts.',
+      'Research common scams in your destination.',
+    ],
+  },
+];
+
+const TipsTabs = () => {
+  const [activeTab, setActiveTab] = useState(1);
+
   return (
-    <div className="flex justify-center items-center min-h-screen relative">
-      <div className="w-3/5 bg-pink-500 p-10 rounded-xl shadow-2xl -mt-60 transform hover:-translate-y-2 transition-transform duration-300">
-        <h1 className="text-4xl font-extrabold mb-6 text-white tracking-wide">
-          Potential Scams
-        </h1>
-        <ul className="list-disc pl-6 text-white space-y-4">
-          <li className="flex items-start space-x-2">
-            <span>🔍</span>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span>⚠️</span>
-            <span>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span>🚨</span>
-            <span>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span>💡</span>
-            <span>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span>🛑</span>
-            <span>Mauris massa. Vestibulum lacinia arcu eget nulla.</span>
-          </li>
-        </ul>
+    <div className="container mx-auto p-6 flex justify-center">
+      <div className="w-full sm:w-3/4 lg:w-2/3  text-white rounded-lg shadow-lg p-6" style={{backgroundColor:'#40A578'}}>
+        <div className="flex flex-col items-center">
+          <h2 className="text-3xl font-bold mb-4">Helpful  Tips</h2>
+          <div className="w-full">
+            <div className="flex justify-around border-b mb-4">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`py-2 px-4 focus:outline-none  text-white ${
+                    activeTab === tab.id
+                      ? 'border-b-2 border-blue-500 text-blue-500'
+                      : 'text-gray-600'
+                  }`}
+                >
+                  {tab.title}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4">
+              {tabs.map((tab) => (
+                <div
+                  key={tab.id}
+                  className={`transition-opacity duration-300 ${
+                    activeTab === tab.id ? 'opacity-100' : 'opacity-0 hidden'
+                  }`}
+                >
+                  <ul className="list-disc list-inside">
+                    {tab.content.map((point, index) => (
+                      <li key={index} className="mb-2">{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default PotentialScams;
+export default TipsTabs;

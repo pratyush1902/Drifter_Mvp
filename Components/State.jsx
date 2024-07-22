@@ -3,7 +3,7 @@ import React from 'react'
 export default function State() {
   return (
     <div className='mt-12'>
-    <h1 className="text-black text-center font-bold text-5xl mt-20 mb-10">
+    <h1 className="text-black text-center font-bold text-4xl mt-20 mb-10">
  Browse By States
 </h1>
   <div className="carousel carousel-center max-w-xxl p-4 space-x-4 bg-white rounded-box">
@@ -13,7 +13,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">Bihar</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>
@@ -24,7 +24,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">Odisha</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>
@@ -36,7 +36,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">Madhya Pardesh</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>
@@ -48,7 +48,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">West Bangal</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>
@@ -60,7 +60,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">Himachal Pardesh</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>
@@ -72,7 +72,7 @@ export default function State() {
  <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
    <div className="text-center text-white">
      <h1 className="text-2xl font-bold">Uttar Pardesh</h1>
-     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Click Me</button>
+     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">Explore</button>
    </div>
  </div>
 </div>

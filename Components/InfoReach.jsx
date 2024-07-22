@@ -1,92 +1,83 @@
- "use client"
+ 'use client'
+
+ // components/WaysToReach.js
 
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar, faTrain, faBus, faPlane } from '@fortawesome/free-solid-svg-icons';
 
-export default function HowToReach() {
-  const [expanded, setExpanded] = useState({
-    train: false,
-    car: false,
-    bus: false,
-    plane: false,
-  });
+const ways = [
+  {
+    id: 1,
+    method: 'Car',
+    icon: faCar,
+    duration: '4 hours',
+    cost: '$50',
+    description: 'A scenic drive through the countryside.',
+  },
+  {
+    id: 2,
+    method: 'Train',
+    icon: faTrain,
+    duration: '3 hours',
+    cost: '$30',
+    description: 'Comfortable and fast.',
+  },
+  {
+    id: 3,
+    method: 'Bus',
+    icon: faBus,
+    duration: '5 hours',
+    cost: '$20',
+    description: 'Economical and frequent.',
+  },
+  {
+    id: 4,
+    method: 'Flight',
+    icon: faPlane,
+    duration: '1 hour',
+    cost: '$100',
+    description: 'Fastest way to reach your destination.',
+  },
+];
 
-  const toggleExpand = (key) => {
-    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
+const WaysToReach = () => {
+  const [selectedWay, setSelectedWay] = useState(null);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">How to Reach</h1>
-      <div className="flex flex-col items-center space-y-4">
-        <div className="w-4/5 bg-white shadow-lg rounded-lg p-6">
-          <div>
-            <h2 className="text-xl font-semibold">By Train</h2>
-            <p className="mt-2 text-gray-600">Take a scenic train journey to reach your destination.</p>
-            {expanded.train && (
-              <p className="mt-2 text-gray-600">
-                Trains are a convenient and eco-friendly way to travel. Enjoy the views and avoid traffic.
-              </p>
-            )}
-            <button
-              onClick={() => toggleExpand('train')}
-              className="mt-2 text-blue-500 hover:underline"
+    <div className="container mx-auto   p-6">
+      <h2 className="text-4xl font-bold mb-16 -mt-32 text-center">Ways to Reach the Destination</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {ways.map((way) => {
+          return (
+            <div
+              key={way.id}
+              onClick={() => setSelectedWay(way.id)}
+              className={`p-6 border rounded-lg cursor-pointer transition transform hover:scale-105 ${
+                selectedWay === way.id ? 'border-blue-500 bg-blue-100' : 'border-gray-300 bg-white'
+              }`}
             >
-              {expanded.train ? 'Show Less' : 'Show More'}
-            </button>
-          </div>
-        </div>
-        <div className="w-4/5 bg-white shadow-lg rounded-lg p-6">
-          <div>
-            <h2 className="text-xl font-semibold">By Car</h2>
-            <p className="mt-2 text-gray-600">Drive at your own pace and enjoy the road trip.</p>
-            {expanded.car && (
-              <p className="mt-2 text-gray-600">
-                Traveling by car offers flexibility and control over your schedule. Stop and explore along the way.
-              </p>
-            )}
-            <button
-              onClick={() => toggleExpand('car')}
-              className="mt-2 text-blue-500 hover:underline"
-            >
-              {expanded.car ? 'Show Less' : 'Show More'}
-            </button>
-          </div>
-        </div>
-        <div className="w-4/5 bg-white shadow-lg rounded-lg p-6">
-          <div>
-            <h2 className="text-xl font-semibold">By Bus</h2>
-            <p className="mt-2 text-gray-600">Take a comfortable bus ride to your destination.</p>
-            {expanded.bus && (
-              <p className="mt-2 text-gray-600">
-                Buses are an affordable and efficient way to travel. They offer various routes and schedules.
-              </p>
-            )}
-            <button
-              onClick={() => toggleExpand('bus')}
-              className="mt-2 text-blue-500 hover:underline"
-            >
-              {expanded.bus ? 'Show Less' : 'Show More'}
-            </button>
-          </div>
-        </div>
-        <div className="w-4/5 bg-white shadow-lg rounded-lg p-6">
-          <div>
-            <h2 className="text-xl font-semibold">By Plane</h2>
-            <p className="mt-2 text-gray-600">Fly to your destination quickly and conveniently.</p>
-            {expanded.plane && (
-              <p className="mt-2 text-gray-600">
-                Flying is the fastest way to reach your destination. Enjoy in-flight amenities and arrive in no time.
-              </p>
-            )}
-            <button
-              onClick={() => toggleExpand('plane')}
-              className="mt-2 text-blue-500 hover:underline"
-            >
-              {expanded.plane ? 'Show Less' : 'Show More'}
-            </button>
-          </div>
-        </div>
+              <div className="flex flex-col items-center">
+                <FontAwesomeIcon icon={way.icon} className="h-12 w-12 mb-4 text-blue-500" />
+                <h3 className="text-xl font-semibold mb-2 text-center">{way.method}</h3>
+                <p className="text-gray-700 text-center">{way.duration}</p>
+                <p className="text-gray-700 text-center">{way.cost}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
+
+      {selectedWay && (
+        <div className="mt-6 p-6 border rounded-lg " style={{ backgroundColor: '#ACE1AF' }}>
+          <h3 className="text-xl font-semibold mb-2">
+            {ways.find((way) => way.id === selectedWay).method}
+          </h3>
+          <p>{ways.find((way) => way.id === selectedWay).description}</p>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default WaysToReach;

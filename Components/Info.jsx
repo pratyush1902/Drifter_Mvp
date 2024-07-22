@@ -8,9 +8,10 @@ import InfoScam from './InfoScam'
 import InfoList from './InfoList'
 import Transport from './InfoLocalTransport'
 import Credit from './InfoCredit'
+import InfoActivity from './InfoActivity'
  
  
- export default function Info() {
+ export default function Info({destination}) {
    return (
      <div>
         <InfoHead/>
@@ -20,6 +21,7 @@ import Credit from './InfoCredit'
         <InfoReach/>
      
         <InfoList/>
+        <InfoActivity/>
         <InfoNear/>
         <InfoScam/>
         <Credit/>
