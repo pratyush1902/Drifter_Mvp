@@ -11,7 +11,7 @@ import Credit from './InfoCredit'
 import InfoActivity from './InfoActivity'
  
  
- export default function Info({destination}) {
+ export default function Info( ) {
    return (
      <div>
         <InfoHead/>
