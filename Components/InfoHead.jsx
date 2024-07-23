@@ -1,6 +1,7 @@
 
 'use client'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const images = [
   { src: "https://images.unsplash.com/photo-1600762516498-761775b86af7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Shimla" },
@@ -9,13 +10,15 @@ const images = [
   // Add more image objects here
 ];
 
-const Carousel = () => {
+
+
+const Carousel = ({data}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 3 seconds
+    }, 5000);  
 
     return () => clearInterval(interval);
   }, []);
@@ -31,7 +34,7 @@ const Carousel = () => {
             className="w-full  h-[50%] object-cover    "
           />
           <div className="absolute inset-0 flex items-start justify-center pt-4">
-            <h2 className="text-white text-2xl md:text-[120px] m-4 mt-16">{image.text}</h2>
+            <h2 className="text-white text-2xl md:text-[120px] m-4 mt-16">{data}</h2>
           </div>
         </div>
       ))}

@@ -15,10 +15,9 @@ export default async function CityPage({ params }) {
 
     return (
       <div className="container mx-auto p-4">
-        {/* <h1 className="text-4xl font-bold mb-4">{cityData.attributes.Name}</h1> */}
-        <Info/>
-        {/* <p className="text-lg">{cityData.attributes.description}</p> */}
-        {/* Add more city details as needed */}
+        
+        <Info cityData={cityData.attributes}/>
+       
       </div>
     );
   } catch (error) {

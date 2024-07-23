@@ -11,10 +11,10 @@ import Credit from './InfoCredit'
 import InfoActivity from './InfoActivity'
  
  
- export default function Info( ) {
+ export default function Info( {cityData}) {
    return (
      <div>
-        <InfoHead/>
+        <InfoHead data={cityData.Name}/>
         <InfoWeather/>
         <InfoCompare/>
         <Transport/>

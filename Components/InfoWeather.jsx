@@ -1,7 +1,13 @@
 import React from 'react';
+ 
+import axios from 'axios';
 import { SunIcon,  CloudIcon, ArrowDownIcon, UsersIcon, CalendarIcon } from '@heroicons/react/24/outline';
 
 const WeatherTourismCard = () => {
+
+   
+ 
+
   return (
     <div className='min-h-screen flex items-center justify-center mt-[-700px] '>
     <div className="w-4/5 mx-auto   shadow-lg rounded-lg overflow-hidden "style={{ backgroundColor: '#C5EBAA' }}>
