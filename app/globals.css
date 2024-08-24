@@ -9,5 +9,76 @@
   .card:hover {
     transform: scale(1.05);
   }
-
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .animated-svg {
+    animation: bounce 2s infinite;
+  }
+ 
+  .loader {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    transform: rotateZ(45deg);
+  }
+  
+  .cube {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #3498db;
+    transform-origin: 100% 100%;
+    animation: cubeMove 1.8s infinite ease-in-out;
+  }
+  
+  .cube1 {
+    transform: rotateZ(0deg) translateX(0);
+    animation-delay: -0.3s;
+  }
+  
+  .cube2 {
+    transform: rotateZ(90deg) translateX(0);
+    animation-delay: -0.6s;
+  }
+  
+  .cube3 {
+    transform: rotateZ(180deg) translateX(0);
+    animation-delay: -0.9s;
+  }
+  
+  .cube4 {
+    transform: rotateZ(270deg) translateX(0);
+    animation-delay: -1.2s;
+  }
+  
+  @keyframes cubeMove {
+    0%, 10% {
+      transform: rotateZ(0deg) translateX(0);
+    }
+    25%, 35% {
+      transform: rotateZ(90deg) translateX(100%);
+    }
+    50%, 60% {
+      transform: rotateZ(180deg) translateX(100%);
+    }
+    75%, 85% {
+      transform: rotateZ(270deg) translateX(100%);
+    }
+    100% {
+      transform: rotateZ(360deg) translateX(0);
+    }
+  }
+  
  

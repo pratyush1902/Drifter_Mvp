@@ -5,6 +5,7 @@ import Top_place from '@/Components/Top_place'
 import Trending_place from '@/Components/Trending_place'
 import Place_Type from '@/Components/Place_Type'
 import State from '@/Components/State'
+import CommingSoon from '@/Components/CommingSoon'
  
  function page() {
    return (
@@ -16,6 +17,7 @@ import State from '@/Components/State'
 
      <Place_Type/>
      <State/>
+     <CommingSoon/>
      
     
      </div>

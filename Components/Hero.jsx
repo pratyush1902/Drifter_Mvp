@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Loading from './Loading';
 
 export default function Hero() {
   const [city, setCity] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleInputChange = (e) => {
@@ -12,7 +14,8 @@ export default function Hero() {
   };
 
   const handleSearch = async () => {
-    if (!city) return;
+    // if (!city) return;
+    setLoading(true);
 
     try {
       const response = await axios.get('http://localhost:1337/api/destinations');
@@ -33,6 +36,9 @@ export default function Hero() {
 
   return (
     <div className='hero'>
+         {loading ? (
+        <Loading />
+      ) : (
       <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://themes.coderthemes.com/booking_v/assets/20-Dp2huxfT.jpg)' }}>
         <div className="hero-overlay bg-opacity-80"></div>
         <div className="hero-content text-center text-neutral-content">
@@ -61,6 +67,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+        )}
     </div>
   );
 }

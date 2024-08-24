@@ -1,5 +1,7 @@
-'use client'
-import { useState } from 'react';
+'use client';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Link from 'next/link';
 
 const categories = [
   { label: 'All', icon: 'https://static-00.iconduck.com/assets.00/all-icon-512x441.png' },
@@ -10,127 +12,55 @@ const categories = [
   { label: 'Offbeat', icon: 'https://static.vecteezy.com/system/resources/previews/005/988/954/original/hidden-icon-free-vector.jpg' },
 ];
 
-const ExplorePlaces = () => {
-  const places = [
-    {
-      type: 'Trek',
-      status: 'Closed',
-      image: 'https://images.unsplash.com/photo-1717229770067-fc87ef50e4af?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Portland New Art Museum',
-      address: 'W Century Blvd, Los Angeles',
-      phone: '+(125) 548 996',
-      price: null,
-      recommended: false,
-    },
-    {
-      type: 'Touristy',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1717508722842-a114598734fa?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'JP Shopping Mall in California',
-      address: null,
-      phone: null,
-      price: '$449',
-      recommended: true,
-    },
-    {
-      type: 'Camping',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1717444255955-d34c2ddfbb69?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Courtyard by Marriott New York',
-      address: 'W Century Blvd, Los Angeles',
-      phone: '+(125) 548 996',
-      price: null,
-      recommended: false,
-    },
-    {
-      type: 'Offbeat',
-      status: 'Closed',
-      image: 'https://images.unsplash.com/photo-1717226263667-7ce6f7f35d9d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Emperor Resort & Spa',
-      address: null,
-      phone: null,
-      price: '$350',
-      recommended: true,
-    },
-    {
-      type: 'Trek',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1545126178-862cdb469409?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Gourmet Paradise',
-      address: 'Sunset Blvd, Los Angeles',
-      phone: '+(125) 548 997',
-      price: null,
-      recommended: true,
-    },
-    {
-      type: 'Touristy',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1523980077198-60824a7b2148?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGluZGlhfGVufDB8fDB8fHww',
-      name: 'Central Park',
-      address: '5th Ave, New York',
-      phone: null,
-      price: null,
-      recommended: false,
-    },
-    {
-      type: 'Offbeat',
-      status: 'Closed',
-      image: 'https://images.unsplash.com/photo-1529733772151-bab41484710a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Cozy Corner Cafe',
-      address: 'Main St, San Francisco',
-      phone: '+(125) 548 998',
-      price: null,
-      recommended: false,
-    },
-    {
-      type: 'Trek',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1598434192043-71111c1b3f41?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'History Museum',
-      address: 'History Lane, Boston',
-      phone: '+(125) 548 999',
-      price: null,
-      recommended: true,
-    },
-    {
-      type: 'Camping',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1609609830354-8f615d61b9c8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fGluZGlhfGVufDB8fDB8fHww',
-      name: 'Broadway Theater',
-      address: 'Broadway, New York',
-      phone: '+(125) 548 100',
-      price: null,
-      recommended: true,
-    },
-    {
-      type: 'Touristy',
-      status: 'Open',
-      image: 'https://images.unsplash.com/photo-1519998994457-43c1f2c8460b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8',
-      name: 'City Zoo',
-      address: 'Wildlife Ave, Chicago',
-      phone: '+(125) 548 101',
-      price: null,
-      recommended: true,
-    },
-  ];
-
+const ExplorePlaces = ({ destinationId }) => {
+  const [travelSpots, setTravelSpots] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [visiblePlacesCount, setVisiblePlacesCount] = useState(6);
 
+  useEffect(() => {
+    const fetchTravelSpots = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:1337/api/destinations?populate=travel_spots.Thumbnail');
+        const destinationData = response.data.data;
+
+        const destination = destinationData.find(dest => dest.id === parseInt(destinationId));
+        if (destination && destination.attributes.travel_spots) {
+          setTravelSpots(destination.attributes.travel_spots.data);
+        } else {
+          console.error('No travel spots found for this destination.');
+        }
+      } catch (error) {
+        console.error('Error fetching travel spots:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTravelSpots();
+  }, [destinationId]);
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setVisiblePlacesCount(6); // Reset visible places count when category changes
+    setVisiblePlacesCount(6);
   };
 
-  const filteredPlaces = selectedCategory === 'All' ? places : places.filter(place => place.type.toLowerCase() === selectedCategory.toLowerCase());
+  const filteredPlaces = selectedCategory === 'All'
+    ? travelSpots
+    : travelSpots.filter(place => place.attributes.Type.toLowerCase() === selectedCategory.toLowerCase());
 
   const handleShowMore = () => {
-    setVisiblePlacesCount(prevCount => prevCount + 6); // Show 6 more places
+    setVisiblePlacesCount(prevCount => prevCount + 6);
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-8">Great places to Explore</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">Great Places to Explore</h1>
       
       <div className="flex flex-wrap justify-center p-4 mb-8">
         {categories.map((category) => (
@@ -150,19 +80,27 @@ const ExplorePlaces = () => {
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredPlaces.slice(0, visiblePlacesCount).map((place, index) => (
-          <div key={index} className="bg-white p-4 rounded-lg shadow-lg">
-            <img src={place.image} alt={place.name} className="w-full h-40 object-cover rounded-t-lg" />
-            <div className="p-4">
-              <h2 className="text-2xl font-bold">{place.name}</h2>
-              {place.address && <p className="text-gray-600">{place.address}</p>}
-              {place.phone && <p className="text-gray-600">{place.phone}</p>}
-              {place.price && <p className="text-gray-600">{place.price}</p>}
-              <p className={`text-sm ${place.status === 'Open' ? 'text-green-500' : 'text-red-500'}`}>{place.status}</p>
-              {place.recommended && <p className="text-blue-500 font-semibold">Recommended</p>}
-            </div>
-          </div>
-        ))}
+        {filteredPlaces.slice(0, visiblePlacesCount).map((place) => {
+          const thumbnailUrl = place.attributes.Thumnail?.data?.attributes?.formats?.thumbnail?.url 
+            ? `http://localhost:1337${place.attributes.Thumnail.data.attributes.formats.thumbnail.url}` 
+            : 'https://via.placeholder.com/150'; // Fallback image URL
+
+          return (
+            <Link key={place.id} href={`/city/${destinationId}/spots/${place.id}`} className="bg-white p-4 rounded-lg shadow-lg">
+            
+                <img 
+                  src={thumbnailUrl}
+                  alt={place.attributes.Name}
+                  className="w-full h-40 object-cover rounded-t-lg"
+                />
+                <div className="p-4">
+                  <h2 className="text-2xl font-bold">{place.attributes.Name}</h2>
+                  <h4 className="text-xs font-bold">{place.attributes.Type}</h4>
+                </div>
+            
+            </Link>
+          );
+        })}
       </div>
       
       {visiblePlacesCount < filteredPlaces.length && (

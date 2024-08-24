@@ -7,7 +7,7 @@ function Navbar() {
     <div className='Navbar'>
         <div className="navbar bg-base-200">
   <div className="flex-1 ml-10">
-    <a className="btn btn-ghost text-xl"> <Image src={logo} height={100} width={100}/></a>
+    <a href='/' className="btn btn-ghost text-xl"> <Image src={logo} height={100} width={100}/></a>
     
   </div>
   <div className="flex-none  ">
