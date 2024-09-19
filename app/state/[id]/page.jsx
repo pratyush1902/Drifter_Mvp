@@ -1,24 +1,20 @@
-'use client';
-
+'use client'
+import State from '@/Components/Stateinfo'
+import Loading from '@/Components/Loading';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
-import Info from '../../../components/Info';
-import Loading from '../../../components/Loading';
-import Head from 'next/head';
 
-export default function CityPage({ params }) {
+export default function page({ params }) {
   const { id } = params;
   const [cityData, setCityData] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (!id) return;
 
     const fetchCityData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:1337/api/destinations/${id}?populate=*`);
+        const response = await axios.get(`http://localhost:1337/api/states/${id}?populate=*`);
         const city = response.data.data;
 
         if (!city) {
@@ -43,16 +39,10 @@ export default function CityPage({ params }) {
   if (loading) {
     return <Loading />;
   }
-
   return (
-    <>
-      <Head>
-        <title>{cityData.name} - Travel App</title>
-        <meta name="description" content={`Discover the best places to visit in ${cityData.name}.`} />
-      </Head>
-      <div className="container mx-auto p-4">
-        <Info cityData={cityData} id={id}/>
-      </div>
-    </>
-  );
+    <div>
+    
+      <State cityData={cityData} id={id}/>
+    </div>
+  )
 }
