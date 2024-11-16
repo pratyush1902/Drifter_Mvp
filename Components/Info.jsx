@@ -23,7 +23,7 @@ export default function Info( {cityData,id}) {
         <InfoReach/>
      
         <InfoList  destinationId ={id}/>
-        <InfoActivity/>
+        <InfoActivity destinationId ={id}/>
         <InfoNear/>
         <InfoScam/>
         <Credit/>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 const categories = [
   { label: 'All', icon: 'https://static-00.iconduck.com/assets.00/all-icon-512x441.png' },
@@ -12,7 +13,8 @@ const categories = [
   { label: 'Offbeat', icon: 'https://static.vecteezy.com/system/resources/previews/005/988/954/original/hidden-icon-free-vector.jpg' },
 ];
 
-const ExplorePlaces = ({ destinationId }) => {
+const ExplorePlaces = ({ destinationId ,params}) => {
+  const { id } = useParams();
   const [travelSpots, setTravelSpots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function spotinfo() {
+export default function spotinfo({travelSpots}) {
   return (
     <div>
       <div class="px-40 flex flex-1 justify-center py-5">
@@ -8,7 +8,7 @@ export default function spotinfo() {
      
     <div class="flex flex-wrap justify-between gap-3 p-4">
       <div class="flex min-w-72 flex-col gap-3">
-        <p class="text-[#111518] text-4xl font-black leading-tight tracking-[-0.033em]">Kyoto</p>
+        <p class="text-[#111518] text-4xl font-black leading-tight tracking-[-0.033em]">{travelSpots.Name}</p>
         <p class="text-[#60778a] text-base font-normal leading-normal">Explore the historical and cultural heart of Japan</p>
       </div>
     </div>

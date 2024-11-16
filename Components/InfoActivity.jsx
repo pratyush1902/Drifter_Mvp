@@ -1,7 +1,8 @@
 'use client'
+import Link from 'next/link';
 import { useState } from 'react';
 
-const HomePage = () => {
+const HomePage = ({ destinationId}) => {
   const categories = [
     { id: '1', name: 'River Rafting' },
     { id: '2', name: 'Food Walk' },
@@ -80,13 +81,14 @@ const HomePage = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
         {filteredActivities.map((activity) => (
           <div key={activity.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
             <img className="w-full h-48 object-cover" src={activity.image} alt={activity.title} />
             <div className="p-4">
               <h2 className="text-lg font-bold">{activity.title}</h2>
               <p className="text-gray-600">{activity.description}</p>
-              <div className="mt-4 text-blue-500 underline cursor-pointer">View detail →</div>
+              <Link key={activity.id} href={`/city/${destinationId}/spots/${activity.id}`} className="mt-4 text-blue-500 underline cursor-pointer">View detail →</Link>
             </div>
           </div>
         ))}

@@ -26,6 +26,7 @@ export default function Hero() {
         // Navigate to the dynamic page for the city
         router.push(`/city/${cityData.id}`);
       } else {
+        setLoading(false);
         alert('City not found');
       }
     } catch (error) {
