@@ -22,36 +22,54 @@ export default function CityPage({ params }) {
         const city = response.data.data;
 
         if (!city) {
-          notFound();
+          notFound();  // Handle case if city data is not found
           return;
         }
 
-        
         setTimeout(() => {
           setCityData(city.attributes);
           setLoading(false);
-        }, 2000);
+        }, 2000);  // Optional: Simulating loading delay
       } catch (error) {
         console.error('Error fetching city data:', error);
-        notFound();
+        notFound();  // Handle error case
       }
     };
 
     fetchCityData();
   }, [id]);
 
+  useEffect(() => {
+    if (cityData) {
+      document.title = `Discover ${cityData.Name} | Best Travel Destinations`; // Set the title manually
+      const metaDescription = document.querySelector('meta[name="description"]');
+      const metaKeywords = document.querySelector('meta[name="keywords"]');
+
+      if (metaDescription) metaDescription.content = `Explore the best landmarks, foods, and destinations in ${cityData.Name}.`;
+      if (metaKeywords) metaKeywords.content = `travel, backpacking, ${cityData.Name}, landmarks, adventure`;
+    }
+  }, [cityData]);
+
+
   if (loading) {
     return <Loading />;
   }
 
+  // Avoid rendering metadata until cityData is available
+  if (!cityData) {
+    return <div>City data not found</div>;  // Or any fallback UI
+  }
+
   return (
     <>
-      <Head>
-        <title>{cityData.name} - Travel App</title>
-        <meta name="description" content={`Discover the best places to visit in ${cityData.name}.`} />
-      </Head>
+      {/* Render Head component after cityData is loaded */}
+      {/* <Head>
+        <title>{cityData.Name} - Travel App</title>
+        <meta name="description" content={`Discover the best places to visit in ${cityData.Name}.`} />
+      </Head> */}
+
       <div className="container mx-auto p-4">
-        <Info cityData={cityData} id={id}/>
+        <Info cityData={cityData} id={id} />
       </div>
     </>
   );

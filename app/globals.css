@@ -80,5 +80,17 @@
       transform: rotateZ(360deg) translateX(0);
     }
   }
+  .image-wrapper {
+    width: 100%;         /* Ensures it is responsive */
+    height: 300px;       /* Fixed height */
+    overflow: hidden;    /* Ensures no overflow outside of the container */
+    position: relative;
+  }
+  
+  .image-wrapper img {
+    object-fit: cover;   /* Ensures the image covers the area without distortion */
+    width: 100%;          /* Ensures the image takes the full width of the container */
+    height: 100%;         /* Ensures the image takes the full height of the container */
+  }
   
  

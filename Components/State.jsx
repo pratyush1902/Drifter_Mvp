@@ -25,14 +25,14 @@ const HomePage = () => {
           <div className="carousel-item" key={state.id}>
             <div className="relative group">
               <img
-                src={'https://images.unsplash.com/photo-1722742925939-d780d52f4530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} // Replace with the correct image URL path
+                src={'https://images.unsplash.com/photo-1720793403671-6c8383d39c8f?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} // Replace with the correct image URL path
                 className="rounded-box w-72 h-96"
                 alt={`${state.attributes.StateName} Image`}
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="text-center text-white">
                   <h1 className="text-2xl font-bold">{state.attributes.StateName}</h1>
-                  <Link href={`/state/${state.id}`}>
+                  <Link href={`/Stateinfo/${state.id}`}>
                     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">
                       Explore
                     </button>

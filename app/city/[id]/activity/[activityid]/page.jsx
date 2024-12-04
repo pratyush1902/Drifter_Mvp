@@ -1,4 +1,7 @@
-import React from 'react';
+'use client';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'next/navigation';
 
 const data = {
   images: [
@@ -25,12 +28,37 @@ const data = {
   ],
 };
 
+ 
+
+
+
 const IslandHopping = () => {
+  const { destinationId,  activityid } = useParams();
+  const [activityDetails, setActivityDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+   
+    const fetchActivityDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:1337/api/activites/${activityid}`);
+        setActivityDetails(response.data.data.attributes);
+      } catch (error) {
+        console.error('Error fetching spot details:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivityDetails();
+  }, [activityid]);
+
+  if (loading) return <p>Loading...</p>;
   return (
     <div className="px-40 flex flex-1 justify-center py-5">
       <div className="layout-content-container flex flex-col max-w-[1260px] flex-1">
         <h1 className="text-[#111518] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">
-          Tropical Island Hopping
+           {activityDetails.Name}
         </h1>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(258px,1fr))] gap-3 p-4">
           {data.images.map((url, index) => (

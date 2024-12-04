@@ -1,39 +1,66 @@
- 'use client';
-import React, { useState, useEffect } from 'react';
-
-
-
-const destination = {
-  name: 'Santorini, Greece',
-  images :[
-  'https://static2.tripoto.com/media/filter/nl/img/1706196/TripDocument/1619425858_cq5dam_web_480_480.jpeg',
-  'https://tourism.bihar.gov.in/content/dam/bihar-tourism/images/category_a/rohtas/rohtasgarh_fort__rohtas/historical_rohtas_category_a_rohtasgarh_fort_pic_1.jpg/jcr:content/renditions/cq5dam.web.1280.765.jpeg',
-  'https://tourism.bihar.gov.in/content/dam/bihar-tourism/images/category_b/rohtas/manjhar_kund___dhuan_kund_sasaram/nature_rohtas_category_b_manjhar_kund__pic_01.jpg/jcr:content/renditions/cq5dam.web.2000.765.jpeg',
-  'https://tourism.bihar.gov.in/content/dam/bihar-tourism/images/category_a/rohtas/sher_shah_suri_tomb__sasaram/sher-sha-shuri-tomb.jpg/jcr:content/renditions/cq5dam.web.1280.765.jpeg',
-],
-  shortInfo: 'Santorini is one of the most famous islands in the world. Known for its stunning sunsets, white-washed buildings, and clear blue waters, it is a top destination for travelers seeking beauty and relaxation.',
-  moreInfoLink: '/destinations/santorini',
-};
+ "use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Link from "next/link";
 
 const DestinationOfTheWeek = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [destinationOfWeek, setDestinationOfTheWeek] = useState(null);
+
+  useEffect(() => {
+    const fetchDestinationOfTheWeek = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:1337/api/destinations?populate=*&filters[DestinatonOfTheWeek][$eq]=true"
+        );
+        if (response.data.data.length > 0) {
+          setDestinationOfTheWeek(response.data.data[0]);  
+        }
+      } catch (error) {
+        console.error("Error fetching destination of the week:", error);
+      }
+    };
+
+    fetchDestinationOfTheWeek();
+  }, []);
 
   const handleNextImage = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % destination.images.length);
+    if (destinationOfWeek && destinationOfWeek.attributes.images.data.length > 0) {
+      setCurrentImage(
+        (prevImage) =>
+          (prevImage + 1) % destinationOfWeek.attributes.images.data.length
+      );
+    }
   };
 
   const handlePrevImage = () => {
-    setCurrentImage((prevImage) => (prevImage - 1 + destination.images.length) % destination.images.length);
+    if (destinationOfWeek && destinationOfWeek.attributes.images.data.length > 0) {
+      setCurrentImage(
+        (prevImage) =>
+          (prevImage - 1 + destinationOfWeek.attributes.images.data.length) %
+          destinationOfWeek.attributes.images.data.length
+      );
+    }
   };
+
+  if (!destinationOfWeek) {
+    return <p className="text-center text-gray-600">Loading...</p>;
+  }
+
+  // const images = destinationOfWeek.attributes.images.data.map(
+  //   (img) => `http://localhost:1337${img.attributes.url}`
+  // );
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-4xl font-bold text-center mt-8 mb-12">Destination of the Week</h2>
+      <h2 className="text-4xl font-bold text-center mt-8 mb-12">
+        Destination of the Week
+      </h2>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden m-4">
         <div className="relative">
           <img
-            src={destination.images[currentImage]}
-            alt={destination.name}
+            src="https://images.unsplash.com/photo-1731491895205-efb4def35547?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt={destinationOfWeek.attributes.Name}
             className="w-full h-64 object-cover"
           />
           <button
@@ -50,14 +77,18 @@ const DestinationOfTheWeek = () => {
           </button>
         </div>
         <div className="p-6">
-          <h3 className="text-3xl font-bold mb-4">{destination.name}</h3>
-          <p className="text-gray-700 mb-6">{destination.shortInfo}</p>
-          <a
-            href={destination.moreInfoLink}
+          <h3 className="text-3xl font-bold mb-4">
+            {destinationOfWeek.attributes.Name}
+          </h3>
+          <p className="text-gray-700 mb-6">
+            {destinationOfWeek.attributes.shortInfo || "No description available."}
+          </p>
+          <Link
+            href={`/city/${destinationOfWeek.id}`}
             className="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
           >
             More Info
-          </a>
+          </Link>
         </div>
       </div>
     </div>

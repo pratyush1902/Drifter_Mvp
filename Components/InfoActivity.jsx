@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 const HomePage = ({ destinationId}) => {
   const categories = [
@@ -11,50 +12,34 @@ const HomePage = ({ destinationId}) => {
     { id: '5', name: 'City Tour' },
   ];
 
-  const activities = [
-    {
-      id: '1',
-      title: 'River Rafting at Colorado River',
-      description: 'Experience the thrill of river rafting at the Colorado River. Suitable for all skill levels.',
-      image: 'https://images.unsplash.com/photo-1624646811925-9084269c46bf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHJhZnRpbmd8ZW58MHx8MHx8fDA%3D',
-      category: '1',
-    },
-    {
-      id: '2',
-      title: 'Gourmet Food Walk in NYC',
-      description: 'Discover the best eats in NYC with a guided food walk. Includes tastings at 5 different locations.',
-      image: 'https://images.unsplash.com/photo-1677297256774-5412e81427c0?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: '2',
-    },
-    {
-      id: '3',
-      title: 'Cycle Tour of San Francisco',
-      description: 'Explore San Francisco on a cycle tour. Visit popular landmarks and enjoy scenic routes.',
-      image: 'https://images.unsplash.com/photo-1654482276870-d2c4aabc067a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: '3',
-    },
-    {
-      id: '3',
-      title: 'Cycle Tour of San Francisco',
-      description: 'Explore San Francisco on a cycle tour. Visit popular landmarks and enjoy scenic routes.',
-      image: 'https://images.unsplash.com/photo-1654482276870-d2c4aabc067a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: '3',
-    },
-    {
-      id: '3',
-      title: 'Cycle Tour of San Francisco',
-      description: 'Explore San Francisco on a cycle tour. Visit popular landmarks and enjoy scenic routes.',
-      image: 'https://images.unsplash.com/photo-1654482276870-d2c4aabc067a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category: '3',
-    },
-    // Add more activities here
-  ];
-
+   
+  const [  activites, setActivity] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('');
+  useEffect(() => {
+    const fetchActivity = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:1337/api/destinations?populate=*');
+        const  activityData = response.data.data;
 
-  const filteredActivities = selectedCategory
-    ? activities.filter((activity) => activity.category === selectedCategory)
-    : activities;
+        const  getActivity = activityData.find(dest => dest.id === parseInt(destinationId));
+        if (getActivity && getActivity.attributes.activites) {
+          setActivity(getActivity.attributes.activites.data);
+        } else {
+          console.error('No travel spots found for this destination.');
+        }
+      } catch (error) {
+        console.error('Error fetching travel spots:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivity();
+  }, [destinationId]);
+
+  
 
   return (
     <div className="container mx-auto p-4">
@@ -82,13 +67,13 @@ const HomePage = ({ destinationId}) => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        {filteredActivities.map((activity) => (
+        {activites.map((activity) => (
           <div key={activity.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={activity.image} alt={activity.title} />
+            <img className="w-full h-48 object-cover" src={activity.image} alt={activity.attributes.Name} />
             <div className="p-4">
-              <h2 className="text-lg font-bold">{activity.title}</h2>
+              <h2 className="text-lg font-bold">{activity.attributes.Name}</h2>
               <p className="text-gray-600">{activity.description}</p>
-              <Link key={activity.id} href={`/city/${destinationId}/spots/${activity.id}`} className="mt-4 text-blue-500 underline cursor-pointer">View detail →</Link>
+              <Link key={activity.id} href={`/city/${destinationId}/activity/${activity.id}`} className="mt-4 text-blue-500 underline cursor-pointer">View detail →</Link>
             </div>
           </div>
         ))}

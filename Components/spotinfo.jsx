@@ -16,12 +16,7 @@ export default function spotinfo({travelSpots}) {
      
     <h2 class="text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Historical Background</h2>
     <p class="text-[#0e151b] text-base font-normal leading-normal pb-3 pt-1 px-4">
-      Kyoto, once the capital of Japan, is a city on the island of Honshu. It's famous for its numerous classical Buddhist temples, as well as gardens, imperial palaces,
-      Shinto shrines, and traditional wooden houses. It's also known for formal traditions such as kaiseki dining and geisha entertaining. The Japanese are known for their
-      politeness, and Kyoto is no exception. Bowing is a common way to greet people. It's important to take off your shoes before entering a home or temple. When you are
-      eating, it's polite to say 'itadakimasu' before you start and 'gochisosama deshita' after you finish. Tipping is not expected in Japan. When visiting a temple or
-      shrine, it's important to be respectful. You should remove your hat and sunglasses, speak quietly, and turn off your cell phone. If you visit a shrine, you may see
-      people washing their hands and mouth. This is a purification ritual called temizu. When you do this, it's important to remember that you should never drink the water.
+       {travelSpots.Description}
     </p>
  
     <h2 class="text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Cultural Insights</h2>
