@@ -28,17 +28,15 @@ const data = {
   ],
 };
 
- 
-
-
-
 const IslandHopping = () => {
-  const { destinationId,  activityid } = useParams();
+  const { destinationId, activityid } = useParams();
   const [activityDetails, setActivityDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
+  const [isBookingSuccess, setIsBookingSuccess] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '' });
 
   useEffect(() => {
-   
     const fetchActivityDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:1337/api/activites/${activityid}`);
@@ -53,12 +51,50 @@ const IslandHopping = () => {
     fetchActivityDetails();
   }, [activityid]);
 
+  const handleBooking = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:1337/api/bookings', {
+        data: {
+          Name: formData.Name,
+          Email: formData.Email,
+          activity: activityid,
+        },
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        setIsBookingSuccess(true);
+      } else {
+        setIsBookingSuccess(false);
+      }
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      setIsBookingSuccess(false);
+    } finally {
+      setIsBookingFormOpen(false);
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
+
+  if (isBookingSuccess !== null) {
+    return isBookingSuccess ? (
+      <div className="flex items-center justify-center min-h-screen text-green-600 text-2xl">
+        Booking Successful! 🎉
+      </div>
+    ) : (
+      <div className="flex items-center justify-center min-h-screen text-red-600 text-2xl">
+        Booking Failed. Please try again. 😞
+      </div>
+    );
+  }
+
   return (
     <div className="px-40 flex flex-1 justify-center py-5">
       <div className="layout-content-container flex flex-col max-w-[1260px] flex-1">
         <h1 className="text-[#111518] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">
-           {activityDetails.Name}
+          {activityDetails.Name}
         </h1>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(258px,1fr))] gap-3 p-4">
           {data.images.map((url, index) => (
@@ -84,22 +120,51 @@ const IslandHopping = () => {
             </div>
           ))}
         </div>
-        <h2 className="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-          Contact us to book this adventure
-        </h2>
-        {data.contacts.map((contact, index) => (
-          <div key={index} className="flex items-center gap-4 bg-white px-4 min-h-[72px] py-2">
-            <div className={`text-[#111518] flex items-center justify-center rounded-lg bg-[#f0f2f5] shrink-0 size-12`} data-icon={contact.icon} data-size="24px" data-weight="regular">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                {/* SVG path here based on the contact.icon */}
-              </svg>
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-[#111518] text-base font-medium leading-normal line-clamp-1">{contact.title}</p>
-              <p className="text-[#60778a] text-sm font-normal leading-normal line-clamp-2">{contact.detail}</p>
-            </div>
+        <button
+          onClick={() => setIsBookingFormOpen(true)}
+          className="bg-blue-600 text-white font-bold px-6 py-3 rounded-md self-center my-4"
+        >
+          Book Now
+        </button>
+        {isBookingFormOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <form
+              onSubmit={handleBooking}
+              className="bg-white p-6 rounded-lg shadow-lg space-y-4"
+            >
+              <h2 className="text-lg font-bold">Book Your Adventure</h2>
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full border px-3 py-2 rounded-md"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full border px-3 py-2 rounded-md"
+              />
+              <button
+                type="submit"
+                className="bg-green-600 text-white font-bold px-6 py-3 rounded-md"
+              >
+                Confirm Booking
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsBookingFormOpen(false)}
+                className="bg-red-600 text-white font-bold px-6 py-3 rounded-md"
+              >
+                Cancel
+              </button>
+            </form>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
