@@ -2,19 +2,31 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Map from '@/Components/Map'
+import Map from '@/Components/Map';
 import { useParams } from 'next/navigation';
-import Head from 'next/head';  // Import Head for metadata
+import Head from 'next/head';
+import Loading from '@/Components/Loading';  // Import your Loading component
 
 export default function Home() {
   const { stateid } = useParams();
   const [stateDetails, setStateDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  // Simulate a brief loading screen before everything
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false); // Hide loading screen after 1.5 seconds
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const fetchStateDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:1337/api/states/${stateid}/?populate[destinations][populate]=*`);
+        const response = await axios.get(
+          `http://localhost:1337/api/states/${stateid}/?populate[destinations][populate]=*`
+        );
         setStateDetails(response.data.data.attributes);
       } catch (error) {
         console.error('Error fetching state details:', error);
@@ -26,19 +38,30 @@ export default function Home() {
     fetchStateDetails();
   }, [stateid]);
 
- 
   useEffect(() => {
     if (stateDetails) {
-      document.title = `Discover ${stateDetails.StateName} | Best kept Places`; // Set the title manually
+      document.title = `Discover ${stateDetails.StateName} | Best kept Places`;
       const metaDescription = document.querySelector('meta[name="description"]');
       const metaKeywords = document.querySelector('meta[name="keywords"]');
 
-      if (metaDescription) metaDescription.content = `Explore the best landmarks, foods, and destinations in ${stateDetails.StateName}.`;
-      if (metaKeywords) metaKeywords.content = `travel, backpacking, ${stateDetails.StateName}, landmarks, adventure`;
+      if (metaDescription)
+        metaDescription.content = `Explore the best landmarks, foods, and destinations in ${stateDetails.StateName}.`;
+      if (metaKeywords)
+        metaKeywords.content = `travel, backpacking, ${stateDetails.StateName}, landmarks, adventure`;
     }
   }, [stateDetails]);
 
-  if (loading) return <p>Loading...</p>;
+  // Initial Loading Screen
+  if (initialLoading || loading) {
+    return  <div className="flex justify-center items-center min-h-screen bg-gray-900">
+    <div className="loader">
+      <div className="cube cube1"></div>
+      <div className="cube cube2"></div>
+      <div className="cube cube4"></div>
+      <div className="cube cube3"></div>
+    </div>
+  </div>
+  }
 
   const famousThings = [
     'Golden Gate Bridge',
@@ -58,17 +81,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* Add Head metadata for state */}
       <Head>
-        <meta name="description" content={`Explore the best landmarks, foods, and destinations in ${stateDetails?.StateName || 'California'}.`} />
-        <meta name="keywords" content={`travel, backpacking, ${stateDetails?.StateName || 'California'}, landmarks, adventure`} />
+        <meta
+          name="description"
+          content={`Explore the best landmarks, foods, and destinations in ${
+            stateDetails?.StateName || 'California'
+          }.`}
+        />
+        <meta
+          name="keywords"
+          content={`travel, backpacking, ${
+            stateDetails?.StateName || 'California'
+          }, landmarks, adventure`}
+        />
       </Head>
 
       {/* Header */}
       <header className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-8">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold">Discover {stateDetails.StateName}</h1>
-          <p className="text-lg mt-2">Explore the Golden State's best destinations and experiences</p>
+          <p className="text-lg mt-2">
+            Explore the Golden State's best destinations and experiences
+          </p>
         </div>
       </header>
 
@@ -90,7 +124,9 @@ export default function Home() {
 
         {/* Famous Foods Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-blue-600 mb-6">Taste {stateDetails.StateName}</h2>
+          <h2 className="text-3xl font-bold text-blue-600 mb-6">
+            Taste {stateDetails.StateName}
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {famousFoods.map((item, index) => (
               <div
@@ -108,7 +144,9 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-blue-600 mb-6">Top Destinations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stateDetails.destinations.data.map((destination, index) => {
-              const imageUrl = destination.attributes.Images.data[0]?.attributes?.url || '/images/default-image.jpg';
+              const imageUrl =
+                destination.attributes.Images.data[0]?.attributes?.url ||
+                '/images/default-image.jpg';
               return (
                 <div
                   key={index}
@@ -122,8 +160,12 @@ export default function Home() {
                     className="object-cover w-full h-[80%]"
                   />
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-blue-700">{destination.attributes.Name}</h3>
-                    <p className="text-gray-600 mt-2 mb-4">{destination.attributes.description || 'No description available.'}</p>
+                    <h3 className="text-xl font-semibold text-blue-700">
+                      {destination.attributes.Name}
+                    </h3>
+                    <p className="text-gray-600 mt-2 mb-4">
+                      {destination.attributes.description || 'No description available.'}
+                    </p>
                     <a
                       href={`/city/${destination.id}`}
                       rel="noopener noreferrer"
