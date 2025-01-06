@@ -9,7 +9,8 @@ import InfoList from './InfoList'
 import Transport from './InfoLocalTransport'
 import Credit from './InfoCredit'
 import InfoActivity from './InfoActivity'
- 
+import InfoEatery from './InfoEatery'
+import InfoShop from './InfoShpping' 
  
  
 export default function Info( {cityData,id}) {
@@ -24,6 +25,8 @@ export default function Info( {cityData,id}) {
      
         <InfoList  destinationId ={id}/>
         <InfoActivity destinationId ={id}/>
+        <InfoEatery data={cityData}  destinationId ={id}/>
+        <InfoShop/>
         <InfoNear/>
         <InfoScam/>
         <Credit/>
