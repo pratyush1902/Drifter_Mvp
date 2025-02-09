@@ -4,7 +4,7 @@ export default function Spotreach() {
   return (
     <div>
         <div class="px-40 flex flex-1 justify-center py-5">
-  <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+  <div class="layout-content-container flex flex-col max-w-[1160px] flex-1">
  
     <div class="flex flex-wrap justify-between gap-3 p-4">
       <div class="flex min-w-72 flex-col gap-3">

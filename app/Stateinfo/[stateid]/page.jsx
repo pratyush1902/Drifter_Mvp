@@ -97,14 +97,20 @@ export default function Home() {
       </Head>
 
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold">Discover {stateDetails.StateName}</h1>
-          <p className="text-lg mt-2">
-            Explore the Golden State's best destinations and experiences
-          </p>
+      <div className="relative w-full h-64 md:h-80 lg:h-96">
+        <Image 
+          src="https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          alt={stateDetails?.StateName || 'State Image'} 
+          layout="fill" 
+          objectFit="cover" 
+          className="rounded-lg"
+        />
+        
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center p-4">
+          <h1 className="text-3xl md:text-5xl font-bold">{stateDetails?.StateName}</h1>
+          <p className="text-sm md:text-lg mt-2 max-w-2xl">{stateDetails?.Description || 'Discover the beauty and culture of this place.'}</p>
         </div>
-      </header>
+      </div>
 
       <main className="px-6 py-12 md:px-16">
         {/* Famous Things Section */}
@@ -141,44 +147,49 @@ export default function Home() {
 
         {/* Top Destinations Section */}
         <section>
-          <h2 className="text-3xl font-bold text-blue-600 mb-6">Top Destinations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {stateDetails.destinations.data.map((destination, index) => {
-              const imageUrl =
-                destination.attributes.Images.data[0]?.attributes?.url ||
-                '/images/default-image.jpg';
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-transform transform hover:scale-105"
-                >
-                  <Image
-                    src={`http://localhost:1337${imageUrl}`}
-                    alt={destination.attributes.Name}
-                    width={300}
-                    height={300}
-                    className="object-cover w-full h-[80%]"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-blue-700">
-                      {destination.attributes.Name}
-                    </h3>
-                    <p className="text-gray-600 mt-2 mb-4">
-                      {destination.attributes.description || 'No description available.'}
-                    </p>
-                    <a
-                      href={`/city/${destination.id}`}
-                      rel="noopener noreferrer"
-                      className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
+  <h2 className="text-3xl font-bold text-blue-600 mb-6 text-center md:text-left">
+    Top Destinations
+  </h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {stateDetails.destinations.data.map((destination, index) => {
+      const imageUrl =
+        destination.attributes.Images.data[0]?.attributes?.url ||
+        '/images/default-image.jpg';
+      return (
+        <div
+          key={index}
+          className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col"
+        >
+          <div className="w-full h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden">
+            <Image
+              src={`http://localhost:1337${imageUrl}`}
+              alt={destination.attributes.Name}
+              width={300}
+              height={300}
+              className="object-cover w-full h-full"
+            />
           </div>
-        </section>
+          <div className="p-4 flex flex-col flex-grow">
+            <h3 className="text-lg sm:text-xl font-semibold text-blue-700">
+              {destination.attributes.Name}
+            </h3>
+            <p className="text-gray-600 mt-2 mb-4 flex-grow">
+              {destination.attributes.description || 'No description available.'}
+            </p>
+            <a
+              href={`/city/${destination.id}`}
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition text-center"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
+
       </main>
 
       <Map destinations={stateDetails.destinations.data} />

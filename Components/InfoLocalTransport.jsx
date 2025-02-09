@@ -1,4 +1,3 @@
-'use client'
 import React, { useState } from 'react';
 
 const transportData = {
@@ -29,45 +28,44 @@ const LocalTransport = () => {
   const [activeTab, setActiveTab] = useState('buses');
 
   return (
-    <div> 
-        <h1 className="text-4xl font-bold  text-center mt-8 text-gray-800">Local Transport</h1>
-    <div className="flex justify-center items-center min-h-screen bg-white " >
-      <div className="w-4/5 bg-white p-8 rounded-lg shadow-lg -mt-36">
-      
-        <div className="flex justify-around mb-4">
-          {Object.keys(transportData).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => setActiveTab(mode)}
-              className={`px-4 py-2 font-semibold rounded-lg ${
-                activeTab === mode ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'
-              } transition duration-300`}
-            >
-              {mode.charAt(0).toUpperCase() + mode.slice(1)}
-            </button>
-          ))}
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">
-            {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
-          </h2>
-          <p className="mb-4 text-gray-600">{transportData[activeTab].description}</p>
-          <ul className="space-y-2">
-            {transportData[activeTab].details.map((detail, index) => (
-              <li key={index} className="  p-4 rounded-lg shadow-md" style={{backgroundColor:'#9DDE8B'}}>
-                {Object.entries(detail).map(([key, value]) => (
-                  <p key={key} className="text-gray-800">
-                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                  </p>
-                ))}
-              </li>
+    <div className="container mx-auto p-6">
+      <h1 className="text-4xl font-bold text-center mt-8 text-gray-800">Local Transport</h1>
+      <div className="flex justify-center items-center bg-white mt-6">
+        <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
+          <div className="flex justify-around mb-4">
+            {Object.keys(transportData).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setActiveTab(mode)}
+                className={`px-4 py-2 font-semibold rounded-lg transition duration-300 ${
+                  activeTab === mode ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'
+                }`}
+              >
+                {mode.charAt(0).toUpperCase() + mode.slice(1)}
+              </button>
             ))}
-          </ul>
+          </div>
+          <div>
+            <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+              {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+            </h2>
+            <p className="mb-4 text-gray-600">{transportData[activeTab].description}</p>
+            <ul className="space-y-2">
+              {transportData[activeTab].details.map((detail, index) => (
+                <li key={index} className="p-4 rounded-lg shadow-md bg-green-200">
+                  {Object.entries(detail).map(([key, value]) => (
+                    <p key={key} className="text-gray-800">
+                      <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                    </p>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
 
-export default LocalTransport;
+export default LocalTransport ;

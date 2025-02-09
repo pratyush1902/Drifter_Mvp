@@ -43,28 +43,8 @@ const HomePage = ({ destinationId}) => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Great Activities to Book</h1>
-      <div className="flex justify-center mb-8">
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            onClick={() => setSelectedCategory(category.id)}
-            className={`mx-2 px-4 py-2 rounded-lg border ${
-              selectedCategory === category.id ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-            }`}
-          >
-            {category.name}
-          </button>
-        ))}
-        <button
-          onClick={() => setSelectedCategory('')}
-          className={`mx-2 px-4 py-2 rounded-lg border ${
-            selectedCategory === '' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-          }`}
-        >
-          All
-        </button>
-      </div>
+      <h1 className="text-4xl font-bold text-center mb-8">Great Activities to Book</h1>
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
         {activites.map((activity) => (

@@ -26,8 +26,8 @@ export default function Info( {cityData,id}) {
         <InfoList  destinationId ={id}/>
         <InfoActivity destinationId ={id}/>
         <InfoEatery data={cityData}  destinationId ={id}/>
-        <InfoShop/>
-        <InfoNear/>
+        <InfoShop data={cityData}  destinationId ={id}/>
+        <InfoNear data={cityData}  destinationId ={id}/>
         <InfoScam/>
         <Credit/>
       

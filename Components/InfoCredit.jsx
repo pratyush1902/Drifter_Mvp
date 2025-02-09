@@ -1,49 +1,57 @@
- 'use client'
-  // components/Contributors.js
+"use client";
 
-import { useState } from 'react';
+// components/Contributors.js
+import { useState } from "react";
 
 const contributors = [
-  'Alice Johnson',
-  'Bob Smith',
-  'Carol White',
-  'David Brown',
-  'Eve Davis',
+  "Alice Johnson",
+  "Bob Smith",
+  "Carol White",
+  "David Brown",
+  "Eve Davis",
 ];
 
 const Contributors = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="container mx-auto p-6 flex justify-center">
-      <div className="w-full sm:w-3/4 lg:w-2/3 rounded-lg shadow-lg p-6" style={{backgroundColor:'#FF9F66'}}>
-        <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-bold mb-4">Contributors</h2>
-          <ul className="flex flex-wrap justify-center gap-4 mb-6">
-            {contributors.map((contributor, index) => (
-              <li
-                key={index}
-                className="text-gray-700 text-lg hover:text-blue-500 transition-colors duration-300"
-              >
-                {contributor}
-              </li>
-            ))}
-          </ul>
-          <p className="text-lg text-gray-600 text-center">
-            Want to contribute? Email us at{' '}
-            <a
-              href="mailto:contribute@example.com"
-              className="text-blue-500 underline hover:text-blue-700 transition-colors duration-300"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+    <div className="container mx-auto px-4 py-6 flex justify-center">
+      <div
+        className="w-full max-w-2xl bg-[#FF9F66] text-white rounded-lg shadow-lg p-6 text-center"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">Contributors</h2>
+
+        {/* Contributor Names */}
+        <ul className="flex flex-wrap justify-center gap-3 text-sm sm:text-lg font-medium">
+          {contributors.map((contributor, index) => (
+            <li
+              key={index}
+              className="transition-colors duration-300 hover:text-gray-900"
             >
-              contribute@example.com
-            </a>
+              {contributor}
+            </li>
+          ))}
+        </ul>
+
+        {/* Contribution Invite */}
+        <p className="text-sm sm:text-lg text-gray-200 mt-6">
+          Want to contribute? Email us at{" "}
+          <a
+            href="mailto:contribute@example.com"
+            className="text-white underline hover:text-gray-900 transition-colors duration-300"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            contribute@example.com
+          </a>
+        </p>
+
+        {/* Hover Effect Message */}
+        {isHovered && (
+          <p className="mt-4 text-xs sm:text-sm text-gray-100">
+            We appreciate your contributions!
           </p>
-          {isHovered && (
-            <p className="mt-4 text-sm text-gray-500">We appreciate your contributions!</p>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

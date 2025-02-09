@@ -1,8 +1,4 @@
- 'use client'
-
- // components/WaysToReach.js
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTrain, faBus, faPlane } from '@fortawesome/free-solid-svg-icons';
 
@@ -45,31 +41,26 @@ const WaysToReach = () => {
   const [selectedWay, setSelectedWay] = useState(null);
 
   return (
-    <div className="container mx-auto   p-6">
-      <h2 className="text-4xl font-bold mb-16 -mt-32 text-center">Ways to Reach the Destination</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {ways.map((way) => {
-          return (
-            <div
-              key={way.id}
-              onClick={() => setSelectedWay(way.id)}
-              className={`p-6 border rounded-lg cursor-pointer transition transform hover:scale-105 ${
-                selectedWay === way.id ? 'border-blue-500 bg-blue-100' : 'border-gray-300 bg-white'
-              }`}
-            >
-              <div className="flex flex-col items-center">
-                <FontAwesomeIcon icon={way.icon} className="h-12 w-12 mb-4 text-blue-500" />
-                <h3 className="text-xl font-semibold mb-2 text-center">{way.method}</h3>
-                <p className="text-gray-700 text-center">{way.duration}</p>
-                <p className="text-gray-700 text-center">{way.cost}</p>
-              </div>
-            </div>
-          );
-        })}
+    <div className="container mx-auto p-6">
+      <h2 className="text-4xl font-bold mb-16 text-center">Ways to Reach the Destination</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {ways.map((way) => (
+          <div
+            key={way.id}
+            onClick={() => setSelectedWay(way.id)}
+            className={`p-6 border rounded-lg cursor-pointer transition transform hover:scale-105 text-center ${
+              selectedWay === way.id ? 'border-blue-500 bg-blue-100' : 'border-gray-300 bg-white'
+            }`}
+          >
+            <FontAwesomeIcon icon={way.icon} className="h-12 w-12 mb-4 text-blue-500 mx-auto" />
+            <h3 className="text-xl font-semibold mb-2">{way.method}</h3>
+            <p className="text-gray-700">{way.duration}</p>
+            <p className="text-gray-700">{way.cost}</p>
+          </div>
+        ))}
       </div>
-
       {selectedWay && (
-        <div className="mt-6 p-6 border rounded-lg " style={{ backgroundColor: '#ACE1AF' }}>
+        <div className="mt-6 p-6 border rounded-lg bg-green-100">
           <h3 className="text-xl font-semibold mb-2">
             {ways.find((way) => way.id === selectedWay).method}
           </h3>
@@ -80,4 +71,4 @@ const WaysToReach = () => {
   );
 };
 
-export default WaysToReach;
+export default WaysToReach  ;

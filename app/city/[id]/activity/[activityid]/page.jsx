@@ -34,7 +34,14 @@ const IslandHopping = () => {
   const [loading, setLoading] = useState(true);
   const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
   const [isBookingSuccess, setIsBookingSuccess] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    bookingDate: '',
+    time: '',
+    numberOfTravelers: 1,
+  });
 
   useEffect(() => {
     const fetchActivityDetails = async () => {
@@ -57,8 +64,12 @@ const IslandHopping = () => {
     try {
       const response = await axios.post('http://localhost:1337/api/bookings', {
         data: {
-          Name: formData.Name,
-          Email: formData.Email,
+          Name: formData.name,
+          Email: formData.email,
+          Phone: formData.phone,
+          bookingDate: formData.bookingDate,
+          Time: formData.time,
+          NumberOfTravelers: formData.numberOfTravelers,
           activity: activityid,
         },
       });
@@ -74,6 +85,13 @@ const IslandHopping = () => {
     } finally {
       setIsBookingFormOpen(false);
     }
+  };
+
+  const handleTravelerCountChange = (operation) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      numberOfTravelers: operation === 'add' ? prevState.numberOfTravelers + 1 : Math.max(1, prevState.numberOfTravelers - 1),
+    }));
   };
 
   if (loading) return <p>Loading...</p>;
@@ -120,6 +138,10 @@ const IslandHopping = () => {
             </div>
           ))}
         </div>
+               {/* New Section: Phone Booking Notice */}
+        <div className="text-center my-6">
+          <p className="text-lg font-semibold text-gray-800">Call us at <span className="text-blue-600">7978578168</span> to book or fill in the form below:</p>
+        </div>
         <button
           onClick={() => setIsBookingFormOpen(true)}
           className="bg-blue-600 text-white font-bold px-6 py-3 rounded-md self-center my-4"
@@ -130,16 +152,16 @@ const IslandHopping = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <form
               onSubmit={handleBooking}
-              className="bg-white p-6 rounded-lg shadow-lg space-y-4"
+              className="bg-white p-8 rounded-lg shadow-lg space-y-6 max-w-lg w-full"
             >
-              <h2 className="text-lg font-bold">Book Your Adventure</h2>
+              <h2 className="text-2xl font-bold text-center">Book Your Adventure</h2>
               <input
                 type="text"
                 placeholder="Your Name"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full border px-3 py-2 rounded-md"
+                className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="email"
@@ -147,18 +169,63 @@ const IslandHopping = () => {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full border px-3 py-2 rounded-md"
+                className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500"
               />
+              <input
+                type="tel"
+                placeholder="Your Phone Number"
+                required
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="date"
+                placeholder="Select Date"
+                required
+                value={formData.bookingDate}
+                onChange={(e) => setFormData({ ...formData, bookingDate: e.target.value })}
+                className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="time"
+                placeholder="Select Time"
+                required
+                value={formData.time}
+                onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                className="w-full border px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-500"
+              />
+
+              <div className="flex items-center justify-between">
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleTravelerCountChange('add')}
+                    className="bg-green-600 text-white font-bold py-2 px-4 rounded-md hover:bg-green-700 transition-colors"
+                  >
+                    Add Traveler
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTravelerCountChange('subtract')}
+                    className="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition-colors"
+                  >
+                    Remove Traveler
+                  </button>
+                </div>
+                <p className="text-xl">{formData.numberOfTravelers} Traveler(s)</p>
+              </div>
+
               <button
                 type="submit"
-                className="bg-green-600 text-white font-bold px-6 py-3 rounded-md"
+                className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full hover:bg-green-700 transition-colors"
               >
                 Confirm Booking
               </button>
               <button
                 type="button"
                 onClick={() => setIsBookingFormOpen(false)}
-                className="bg-red-600 text-white font-bold px-6 py-3 rounded-md"
+                className="bg-red-600 text-white font-bold py-3 px-6 rounded-lg w-full hover:bg-red-700 transition-colors"
               >
                 Cancel
               </button>

@@ -62,11 +62,7 @@ export default function CityPage({ params }) {
 
   return (
     <>
-      {/* Render Head component after cityData is loaded */}
-      {/* <Head>
-        <title>{cityData.Name} - Travel App</title>
-        <meta name="description" content={`Discover the best places to visit in ${cityData.Name}.`} />
-      </Head> */}
+     
 
       <div className="container mx-auto p-4">
         <Info cityData={cityData} id={id} />

@@ -1,46 +1,46 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/navigation';
+import LoadingScreen from './Loading';
 
-export default function Eatery({destinationId}) {
+export default function Eatery({ destinationId }) {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
-    router.push(`/city/${destinationId}/food`); // Replace with your target route
+    setIsLoading(true);
+    router.push(`/city/${destinationId}/food`);
   };
+
   return (
-    <div className="px-40 flex flex-1 justify-center py-5 mt-10">
-      <Head>
-        <title>Book Homestays</title>
-      </Head>
-      <div className="layout-content-container flex flex-col max-w-[1060px] flex-1">
-        <div className="@container">
-          <div className="@[480px]:p-4">
-            <div
-              className="flex min-h-[380px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+    <>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <div className="px-4 sm:px-10 md:px-20 lg:px-40 flex justify-center py-5 mt-10">
+          <Head>
+            <title>Book Homestays</title>
+          </Head>
+          <div className="flex flex-col max-w-6xl w-full">
+            <div className="relative flex flex-col items-center justify-center min-h-[300px] sm:min-h-[380px] p-6 sm:p-8 rounded-2xl bg-cover bg-center bg-no-repeat text-center"
               style={{
-                backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://images.unsplash.com/photo-1536570589770-e2402b43e390?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-                borderRadius:'20px'
+                backgroundImage:
+                  'linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("https://images.unsplash.com/photo-1536570589770-e2402b43e390?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
               }}
             >
-              <div className="flex flex-col gap-2 text-center">
-                <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                   Explore Great Places to Eat
-                </h1>
-                <h2 className="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                   
-                </h2>
-              </div>
+              <h1 className="text-white text-2xl sm:text-4xl font-bold leading-tight">
+                Explore Great Places to Eat
+              </h1>
               <button
-              onClick={handleClick}
-                className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#ee862b] text-[#181411] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                onClick={handleClick}
+                className="mt-4 sm:mt-6 px-6 py-2 sm:px-8 sm:py-3 bg-[#ee862b] text-black font-semibold rounded-full text-sm sm:text-base hover:bg-[#f47b20] transition duration-300"
               >
-                <span className="truncate">Explore</span>
+                Explore
               </button>
             </div>
           </div>
         </div>
-         
-      </div>
-    </div>
+      )}
+    </>
   );
 }

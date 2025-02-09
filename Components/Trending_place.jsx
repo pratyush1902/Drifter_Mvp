@@ -56,12 +56,12 @@ const DestinationOfTheWeek = () => {
       <h2 className="text-4xl font-bold text-center mt-8 mb-12">
         Destination of the Week
       </h2>
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden m-4">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden m-4 ">
         <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1731491895205-efb4def35547?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt={destinationOfWeek.attributes.Name}
-            className="w-full h-64 object-cover"
+            className="w-full h-[36rem]  object-cover"
           />
           <button
             onClick={handlePrevImage}

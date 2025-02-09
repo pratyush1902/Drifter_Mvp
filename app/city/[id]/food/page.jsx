@@ -3,21 +3,40 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Loading from "@/Components/Loading";
 import axios from "axios";
 
 export default function Home() {
   const [destination, setDestination] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams(); // Get the ID from the query parameters
 
   useEffect(() => {
     if (!id) return;
-
+    setLoading(true);
     // Fetch destination data from API using the ID with Axios
     axios
-      .get(`http://localhost:1337/api/destinations/${id}?populate=*`) // Replace with your actual API endpoint
+      .get(`http://localhost:1337/api/destinations/${id}?populate=*`)  
       .then((response) => setDestination(response.data))
       .catch((error) => console.error("Error fetching destination:", error));
   }, [id]);
+  setTimeout(() => {
+   
+    setLoading(false);
+  }, 2000); 
+  useEffect(() => {
+    if (destination) {
+      document.title = `Eat in ${destination.data.attributes.Name} | Best Travel Destinations`; // Set the title manually
+      const metaDescription = document.querySelector('meta[name="description"]');
+      const metaKeywords = document.querySelector('meta[name="keywords"]');
+
+      if (metaDescription) metaDescription.content = `Explore the best landmarks, foods, and destinations in ${destination.data.attributes.Name}.`;
+      if (metaKeywords) metaKeywords.content = `travel, backpacking, ${destination.data.attributes.Name}, landmarks, adventure`;
+    }
+  }, [destination]);
+   if (loading) {
+      return <Loading />;
+    }
 
   if (!destination) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
