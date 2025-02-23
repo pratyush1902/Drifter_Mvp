@@ -14,7 +14,7 @@ export default function Spotreach() {
     </div>
 
      
-    <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Public transport</h2>
+    <h2 class="font-poppins text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Public transport</h2>
     <div class="transport-option bg-white px-4 min-h-[72px] py-2 flex justify-between items-center gap-4">
       <div class="flex items-center gap-4">
         <div class="icon-container bg-[#f0f2f5] rounded-lg flex items-center justify-center text-[#111518] shrink-0">
@@ -36,7 +36,7 @@ export default function Spotreach() {
       </div>
     </div>
     
-    <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Taxis</h2>
+    <h2 class="font-poppins text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Taxis</h2>
     <div class="transport-option bg-white px-4 min-h-[72px] py-2 flex justify-between items-center gap-4">
       <div class="flex items-center gap-4">
         <div class="icon-container bg-[#f0f2f5] rounded-lg flex items-center justify-center text-[#111518] shrink-0">
@@ -58,7 +58,7 @@ export default function Spotreach() {
       </div>
     </div>
     
-    <h2 class="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Car rentals</h2>
+    <h2 class=" font-poppins text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Car rentals</h2>
     <div class="transport-option bg-white px-4 min-h-[72px] py-2 flex justify-between items-center gap-4">
       <div class="flex items-center gap-4">
         <div class="icon-container bg-[#f0f2f5] rounded-lg flex items-center justify-center text-[#111518] shrink-0">

@@ -23,7 +23,7 @@ export default function Footer() {
         
         {/* Social Media & Contact */}
         <div>
-          <h3 className="text-lg font-semibold text-white">Connect with Us</h3>
+          <h3 className=" font-poppins text-lg font-semibold text-white">Connect with Us</h3>
           <div className="flex space-x-4 mt-3">
             <a href="#" className="text-gray-400 hover:text-white text-xl"><FaFacebook /></a>
             <a href="#" className="text-gray-400 hover:text-white text-xl"><FaInstagram /></a>

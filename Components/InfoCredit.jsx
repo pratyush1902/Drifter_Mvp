@@ -19,7 +19,7 @@ const Contributors = () => {
       <div
         className="w-full max-w-2xl bg-[#FF9F66] text-white rounded-lg shadow-lg p-6 text-center"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4">Contributors</h2>
+        <h2 className="font-poppins text-2xl sm:text-3xl font-bold mb-4">Contributors</h2>
 
         {/* Contributor Names */}
         <ul className="flex flex-wrap justify-center gap-3 text-sm sm:text-lg font-medium">

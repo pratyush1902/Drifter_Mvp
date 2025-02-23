@@ -21,7 +21,7 @@ export default function Shopping({ destinationId }) {
               'linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
           }}
         >
-          <h1 className="text-white text-2xl sm:text-4xl font-bold leading-tight">
+          <h1 className="font-poppins text-white text-2xl sm:text-4xl font-bold leading-tight">
             Explore Great Places to Shop
           </h1>
           <button

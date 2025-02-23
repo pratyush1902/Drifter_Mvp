@@ -3,9 +3,9 @@ import Image from 'next/image';
 const HowItWorks = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-center text-4xl font-extrabold text-gray-900 mb-8">
+      <h1 className="font-poppins text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-8">
         How It Works
-      </h2>
+      </h1>
       <p className="text-center text-gray-500 mb-12">
         Discover how our platform helps backpackers find the best travel experiences.
       </p>
@@ -49,7 +49,7 @@ const Card = ({ title, description, imageSrc }) => {
            
         />
       </div>
-      <h3 className="text-xl font-semibold text-gray-900 text-center mb-4">{title}</h3>
+      <h3 className="text-xl font-poppins font-semibold text-gray-900 text-center mb-4">{title}</h3>
       <p className="text-gray-500 text-center">{description}</p>
     </div>
   );

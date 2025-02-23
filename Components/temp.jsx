@@ -38,7 +38,7 @@ const DestinationInfo = ({ destination }) => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white p-10 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-4">{info.name}</h1>
+        <h1 className="font-poppins text-3xl font-bold mb-4">{info.name}</h1>
         <p>{info.description}</p>
         {/* Add more information as needed */}
       </div>

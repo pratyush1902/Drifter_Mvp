@@ -24,7 +24,7 @@ const ProfileGallery = ({ Name = "Traveler's Gallery" }) => {
               'linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://cdn.usegalileo.ai/stability/1b4b7287-d3c7-4e54-a68c-f03f2dcf5888.png")',
           }}
         >
-          <h1 className="text-white text-4xl md:text-5xl font-black tracking-tight">
+          <h1 className="font-poppins text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl md:text-5xl font-black tracking-tight">
             {Name}
           </h1>
         </div>

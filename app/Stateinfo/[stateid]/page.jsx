@@ -107,7 +107,7 @@ export default function Home() {
         />
         
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center p-4">
-          <h1 className="text-3xl md:text-5xl font-bold">{stateDetails?.StateName}</h1>
+          <h1 className="font-poppins text-3xl md:text-5xl font-bold">{stateDetails?.StateName}</h1>
           <p className="text-sm md:text-lg mt-2 max-w-2xl">{stateDetails?.Description || 'Discover the beauty and culture of this place.'}</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function Home() {
       <main className="px-6 py-12 md:px-16">
         {/* Famous Things Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-blue-600 mb-6">Iconic Landmarks</h2>
+          <h2 className="font-poppins text-3xl font-bold text-blue-600 mb-6">Iconic Landmarks</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {famousThings.map((item, index) => (
               <div
@@ -130,7 +130,7 @@ export default function Home() {
 
         {/* Famous Foods Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-blue-600 mb-6">
+          <h2 className="font-poppins text-3xl font-bold text-blue-600 mb-6">
             Taste {stateDetails.StateName}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -147,7 +147,7 @@ export default function Home() {
 
         {/* Top Destinations Section */}
         <section>
-  <h2 className="text-3xl font-bold text-blue-600 mb-6 text-center md:text-left">
+  <h2 className="font-poppins text-3xl font-bold text-blue-600 mb-6 text-center md:text-left">
     Top Destinations
   </h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -170,7 +170,7 @@ export default function Home() {
             />
           </div>
           <div className="p-4 flex flex-col flex-grow">
-            <h3 className="text-lg sm:text-xl font-semibold text-blue-700">
+            <h3 className="font-poppins text-lg sm:text-xl font-semibold text-blue-700">
               {destination.attributes.Name}
             </h3>
             <p className="text-gray-600 mt-2 mb-4 flex-grow">

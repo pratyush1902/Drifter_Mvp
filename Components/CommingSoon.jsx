@@ -17,10 +17,10 @@ export default function Home() {
               }}
             >
               <div className="flex flex-col gap-2 text-center">
-                <h1 className="text-white text-3xl sm:text-5xl font-black leading-tight tracking-[-0.033em]">
+                <h1 className="font-poppins text-white text-3xl sm:text-5xl font-black leading-tight tracking-[-0.033em]">
                   Coming Soon: Book Homestays
                 </h1>
-                <h2 className="text-white text-sm sm:text-base font-normal leading-normal">
+                <h2 className="font-poppins text-white text-sm sm:text-base font-normal leading-normal">
                   Discover a new way to stay. Enjoy the comforts of home and authentic local experiences.
                 </h2>
               </div>

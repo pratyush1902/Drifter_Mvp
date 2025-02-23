@@ -14,14 +14,14 @@ const destinations = [
 const DestinationList = () => {
   return (
     <div className="flex flex-col items-center  ">
-      <h1 className="text-4xl font-bold  mt-16 mb-10">Search destination by Category</h1>
+      <h1 className=" font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold  mt-16 mb-10">Search destination by Category</h1>
       {/* <button className="bg-purple-600 text-white px-4 py-2 rounded mb-6">View all</button> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[90%]">
         {destinations.map((destination, index) => (
           <div key={index} className="flex items-center bg-white rounded-lg shadow-lg p-4">
             <img src={destination.image} alt={destination.name} className="w-16 h-16 rounded-full mr-4" />
             <div>
-              <h2 className="text-xl font-semibold">{destination.name}</h2>
+              <h2 className="font-poppins text-xl font-semibold">{destination.name}</h2>
                
             </div>
             <button className="ml-auto bg-gray-200 p-2 rounded-full">

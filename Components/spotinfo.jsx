@@ -14,12 +14,12 @@ export default function spotinfo({travelSpots}) {
     </div>
 
      
-    <h2 class="text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Historical Background</h2>
+    <h2 class="font-poppins text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Historical Background</h2>
     <p class="text-[#0e151b] text-base font-normal leading-normal pb-3 pt-1 px-4">
        {travelSpots.Description}
     </p>
  
-    <h2 class="text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Cultural Insights</h2>
+    <h2 class="font-poppins text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Cultural Insights</h2>
     <p class="text-[#0e151b] text-base font-normal leading-normal pb-3 pt-1 px-4">
       The culture of Kyoto is deeply rooted in tradition. From the elegant art of the tea ceremony to the vibrant colors of the kimono, every aspect of life in Kyoto is
       steeped in history. The city is also known for its traditional crafts, such as pottery, textiles, and paper. One of the most iconic symbols of Kyoto is the geisha, or
@@ -29,7 +29,7 @@ export default function spotinfo({travelSpots}) {
     </p>
 
     
-    <h2 class="text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Travel Tips</h2>
+    <h2 class="font-poppins text-[#0e151b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Travel Tips</h2>
     <p class="text-[#0e151b] text-base font-normal leading-normal pb-3 pt-1 px-4">
       When traveling to Kyoto, it's important to be mindful of the local customs and traditions. Respect for the culture is paramount, so be sure to familiarize yourself
       with basic Japanese etiquette. In terms of transportation, the city is well-connected with an efficient public transit system. Consider purchasing a prepaid

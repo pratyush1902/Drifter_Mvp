@@ -29,7 +29,7 @@ const LocalTransport = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold text-center mt-8 text-gray-800">Local Transport</h1>
+      <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4  text-gray-800 ">Local Transport</h1>
       <div className="flex justify-center items-center bg-white mt-6">
         <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
           <div className="flex justify-around mb-4">
@@ -46,7 +46,7 @@ const LocalTransport = () => {
             ))}
           </div>
           <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+            <h2 className=" font-poppins text-2xl font-semibold mb-4 text-gray-700">
               {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
             </h2>
             <p className="mb-4 text-gray-600">{transportData[activeTab].description}</p>

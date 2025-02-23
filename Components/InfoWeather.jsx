@@ -6,7 +6,7 @@ const WeatherTourismCard = () => {
     <div className='flex items-center justify-center py-10 px-4'>
       <div className="w-full max-w-4xl mx-auto shadow-lg rounded-lg overflow-hidden bg-green-100 p-6">
         <div className="mb-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 flex items-center mb-2">
+          <h3 className=" font-poppins text-lg leading-6 font-medium text-gray-900 flex items-center mb-2">
             <SunIcon className="h-6 w-6 text-yellow-500 mr-2" />
             Weather in July
           </h3>
@@ -24,7 +24,7 @@ const WeatherTourismCard = () => {
           </div>
         </div>
         <div>
-          <h3 className="text-lg leading-6 font-medium text-gray-900 flex items-center mb-2">
+          <h3 className=" font-poppins text-lg leading-6 font-medium text-gray-900 flex items-center mb-2">
             <UsersIcon className="h-6 w-6 text-green-500 mr-2" />
             Tourism in July
           </h3>

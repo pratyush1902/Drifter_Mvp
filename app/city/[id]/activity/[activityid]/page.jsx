@@ -111,7 +111,7 @@ const IslandHopping = () => {
   return (
     <div className="px-40 flex flex-1 justify-center py-5">
       <div className="layout-content-container flex flex-col max-w-[1260px] flex-1">
-        <h1 className="text-[#111518] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">
+        <h1 className="font-poppins text-[#111518] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">
           {activityDetails.Name}
         </h1>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(258px,1fr))] gap-3 p-4">
@@ -124,10 +124,10 @@ const IslandHopping = () => {
             </div>
           ))}
         </div>
-        <h2 className="text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em] px-4 text-center pb-2 pt-4">
+        <h2 className="font-poppins text-[#111518] text-lg font-bold leading-tight tracking-[-0.015em] px-4 text-center pb-2 pt-4">
           $199 per person
         </h2>
-        <h2 className="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
+        <h2 className="font-poppins text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
           What's included &amp; Rules
         </h2>
         <div className="p-4 grid grid-cols-[20%_1fr] gap-x-6">
@@ -154,7 +154,7 @@ const IslandHopping = () => {
               onSubmit={handleBooking}
               className="bg-white p-8 rounded-lg shadow-lg space-y-6 max-w-lg w-full"
             >
-              <h2 className="text-2xl font-bold text-center">Book Your Adventure</h2>
+              <h2 className="font-poppins text-2xl font-bold text-center">Book Your Adventure</h2>
               <input
                 type="text"
                 placeholder="Your Name"

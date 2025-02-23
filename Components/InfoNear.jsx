@@ -28,16 +28,14 @@ const ExploreNearby = ({ destinationId }) => {
   }, [destinationId]);
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4">
-      <h1 className="text-2xl sm:text-4xl font-bold mb-6 text-center">
-        Explore Nearby
-      </h1>
+    <div className="flex flex-col items-center justify-center w-full text-center">
+      <h1 className=" font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Explore Nearby</h1>
 
       {loading && <p className="text-gray-500 text-lg">Loading nearby destinations...</p>}
       {error && <p className="text-red-500 text-lg">{error}</p>}
 
       {!loading && !error && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {nearbyPlaces.map((place) => (
             <Link key={place.id} href={`/city/${place.id}`}>
               <div className="flex flex-col items-center text-center cursor-pointer transition-transform transform hover:scale-105">
@@ -47,7 +45,7 @@ const ExploreNearby = ({ destinationId }) => {
                     backgroundImage: `url(http://localhost:1337${place.attributes.Images?.data[0]?.attributes?.url})`,
                   }}
                 ></div>
-                <h3 className="mt-2 text-sm sm:text-lg font-semibold">
+                <h3 className=" font-poppins mt-2 text-sm sm:text-lg font-semibold">
                   {place.attributes.Name}
                 </h3>
               </div>

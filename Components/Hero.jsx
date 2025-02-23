@@ -75,8 +75,8 @@ export default function Hero() {
           <div className="hero-overlay bg-opacity-80"></div>
           <div className="hero-content text-center text-neutral-content">
             <div>
-              <p className="mb-5 text-[20px] text-white">Explore destinations, plan trips, and uncover travel insights</p>
-              <h1 className="mb-5 text-5xl font-bold text-white">Explore. Dream. Discover. Travel Now</h1>
+              <p className=" font-roboto mb-5 text-[20px] text-white">Explore destinations, plan trips, and uncover travel insights</p>
+              <h1 className=" font-poppins mb-5 text-5xl font-bold text-white">Explore. Dream. Discover. Travel Now</h1>
 
               <div className="bg-white bg-opacity-30 p-2 rounded-lg border border-grey mt-20 relative text-black">
                 <div className="flex items-center space-x-2">

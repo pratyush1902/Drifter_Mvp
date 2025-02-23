@@ -32,7 +32,7 @@ const Carousel = ({ data }) => {
               className="w-full h-[300px] md:h-[500px] lg:h-[600px] object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-              <h2 className="text-white text-xl md:text-4xl lg:text-6xl font-bold">
+              <h2 className="font-poppins text-white text-4xl md:text-6xl lg:text-8xl font-bold">
                 {data}
               </h2>
             </div>

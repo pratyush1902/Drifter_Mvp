@@ -42,7 +42,7 @@ const WaysToReach = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-4xl font-bold mb-16 text-center">Ways to Reach the Destination</h2>
+      <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center">Ways to Reach the Destination</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {ways.map((way) => (
           <div
@@ -53,7 +53,7 @@ const WaysToReach = () => {
             }`}
           >
             <FontAwesomeIcon icon={way.icon} className="h-12 w-12 mb-4 text-blue-500 mx-auto" />
-            <h3 className="text-xl font-semibold mb-2">{way.method}</h3>
+            <h3 className="font-poppins text-xl font-semibold mb-2">{way.method}</h3>
             <p className="text-gray-700">{way.duration}</p>
             <p className="text-gray-700">{way.cost}</p>
           </div>
@@ -61,7 +61,7 @@ const WaysToReach = () => {
       </div>
       {selectedWay && (
         <div className="mt-6 p-6 border rounded-lg bg-green-100">
-          <h3 className="text-xl font-semibold mb-2">
+          <h3 className="font-poppins text-xl font-semibold mb-2">
             {ways.find((way) => way.id === selectedWay).method}
           </h3>
           <p>{ways.find((way) => way.id === selectedWay).description}</p>

@@ -67,7 +67,7 @@ const StateDetails = ( {cityData,id}) => {
             style={{ backgroundImage: 'url("https://cdn.usegalileo.ai/maps/ef166608-c978-410a-8c11-41f36e96bfc4.png")' }}
           ></div>
         </div>
-        <h2 className="text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Top tourist attractions in  {cityData.StateName}</h2>
+        <h2 className="font-poppins text-[#111518] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Top tourist attractions in  {cityData.StateName}</h2>
         {states && states.map((state) => (
           <div className="carousel-item" key={state.id}>
             <div className="relative group">
@@ -78,7 +78,7 @@ const StateDetails = ( {cityData,id}) => {
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="text-center text-white">
-                  <h1 className="text-2xl font-bold">{state.attributes.StateName}</h1>
+                  <h1 className="font-poppins text-2xl font-bold">{state.attributes.StateName}</h1>
                   <Link href={`/state/${state.id}`}>
                     <button className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded">
                       Explore

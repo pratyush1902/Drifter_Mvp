@@ -8,8 +8,8 @@ export default function NotFound() {
       <div className="relative w-96 h-96 animated-svg">
         <Image src="/undraw_page_not_found_re_e9o6.svg" alt="404" layout="fill" objectFit="contain" />
       </div>
-      <h1 className="text-6xl font-bold mt-8">Oops!</h1>
-      <h2 className="text-4xl mt-4">We can't find that page</h2>
+      <h1 className=" font-poppins text-6xl font-bold mt-8">Oops!</h1>
+      <h2 className="font-poppins text-4xl mt-4">We can't find that page</h2>
       <p className="text-lg mt-4 max-w-lg text-center">
         The page you're looking for might have been removed, had its name changed, or is temporarily unavailable.
       </p>

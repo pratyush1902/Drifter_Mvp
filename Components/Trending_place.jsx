@@ -53,9 +53,9 @@ const DestinationOfTheWeek = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-4xl font-bold text-center mt-8 mb-12">
+      <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mt-8 mb-12">
         Destination of the Week
-      </h2>
+      </h1>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden m-4 ">
         <div className="relative">
           <img
