@@ -1,7 +1,9 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import React from "react";
 import Image from "next/image";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 import logo from "../public/logo.png";
 
 function Navbar() {
@@ -11,61 +13,36 @@ function Navbar() {
     <div className="Navbar">
       <div className="navbar bg-base-200">
         <div className="flex-1 ml-10">
-          <a href="/" className="btn btn-ghost text-xl">
+          <Link href="/" className="btn btn-ghost text-xl">
             <Image src={logo} height={100} width={100} alt="Logo" />
-          </a>
+          </Link>
         </div>
-        <div className="flex-none">
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
 
-          <div className="dropdown dropdown-end mr-10 ml-5">
-            {session ? (
-              // If logged in, show profile and logout
+        <div className="flex-none">
+          {session ? (
+            <div className="dropdown dropdown-end mr-10 ml-5">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <Image src={session.user.image} width={40} height={40} alt="Profile" className="rounded-full" />
+                  <Image src={session.user.image} alt="Profile" width={40} height={40} />
                 </div>
               </div>
-            ) : (
-              // If not logged in, show sign-in button
-              <button onClick={() => signIn("google")} className="btn btn-primary">
-                Sign in with Google
-              </button>
-            )}
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              {session ? (
-                <>
-                  <li>
-                    <a className="justify-between">Profile</a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <button onClick={() => signOut()}>Logout</button>
-                  </li>
-                </>
-              ) : null}
-            </ul>
-          </div>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <a className="justify-between">Hi, {session.user.name}!</a>
+                </li>
+                <li>
+                  <Link href="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button onClick={() => signOut()}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <button className="btn btn-primary" onClick={() => signIn("google")}>
+              Sign in with Google
+            </button>
+          )}
         </div>
       </div>
     </div>

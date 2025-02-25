@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { storeUser } from "@/utils/storeUser";
 
 export const authOptions = {
   providers: [
@@ -8,7 +9,15 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async signIn({ user }) {
+      await storeUser(user); // Store user in Strapi on first login
+      return true;
+    },
+    async session({ session }) {
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
