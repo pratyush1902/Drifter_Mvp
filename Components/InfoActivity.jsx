@@ -22,11 +22,11 @@ const HomePage = ({ destinationId }) => {
     const fetchActivities = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:1337/api/destinations?populate=activites.Thumbnail');
+        const response = await axios.get('http://localhost:1337/api/destinations?populate=activities.image');
         const activityData = response.data.data;
         const getActivity = activityData.find(dest => dest.id === parseInt(destinationId));
-        if (getActivity && getActivity.attributes.activites) {
-          setActivities(getActivity.attributes.activites.data);
+        if (getActivity && getActivity.attributes.activities) {
+          setActivities(getActivity.attributes.activities.data);
         } else {
           console.error('No activities found for this destination.');
         }
@@ -49,7 +49,7 @@ const HomePage = ({ destinationId }) => {
 
   const filteredActivities = selectedCategory === 'All' 
     ? activities 
-    : activities.filter(activity => activity.attributes.Category === selectedCategory);
+    : activities.filter(activity => activity.attributes.category === selectedCategory);
 
   return (
     <div className="container mx-auto p-4">
@@ -74,15 +74,15 @@ const HomePage = ({ destinationId }) => {
         <div className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-transform hover:scale-105 cursor-pointer hover:shadow-xl">
           <img 
             className="w-full h-56 object-cover" 
-            src={activity.attributes.Thumbnail?.data?.attributes?.url 
-              ? `http://localhost:1337${activity.attributes.Thumbnail.data.attributes.url}` 
+            src={activity.attributes.image?.data?.attributes?.url 
+              ? `http://localhost:1337${activity.attributes.image.data.attributes.url}` 
               : 'https://via.placeholder.com/300'} 
             alt={activity.attributes.Name} 
           />
           <div className="p-5">
-            <h2 className=" font-poppins text-2xl font-bold mb-2 text-gray-900">{activity.attributes.Name}</h2>
+            <h2 className=" font-poppins text-2xl font-bold mb-2 text-gray-900">{activity.attributes.name}</h2>
             <p className="text-gray-600 text-sm">{activity.attributes.description || 'No description available'}</p>
-            <p className="text-lg font-semibold text-blue-600 mt-2">₹{activity.attributes.Price || 'N/A'}</p>
+            <p className="text-lg font-semibold text-blue-600 mt-2">₹{activity.attributes.price || 'N/A'}</p>
             <p className="text-sm text-gray-500">Duration: {activity.attributes.Duration || 'N/A'}</p>
           </div>
         </div>

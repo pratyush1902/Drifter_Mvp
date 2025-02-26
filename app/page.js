@@ -56,9 +56,7 @@ export default function Page() {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-      } finally {
-        setLoading(false);
-      }
+      }  
     };
   
     fetchUserData();
