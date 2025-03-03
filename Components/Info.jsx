@@ -16,17 +16,17 @@ export default function Info({ cityData, id }) {
   return (
     <div className="space-y-6 p-4 md:p-6 lg:p-8">
       <InfoHead data={cityData.Name} />
-      <InfoWeather />
-      <InfoCompare />
+      <InfoWeather data={cityData}/>
+      <InfoCompare data={cityData} />
       <Transport />
-      <InfoReach />
+      <InfoReach data={cityData}/>
       <InfoList destinationId={id} />
       <InfoActivity destinationId={id} />
       <InfoEatery data={cityData} destinationId={id} />
       <InfoShop data={cityData} destinationId={id} />
       <InfoNear data={cityData} destinationId={id} />
-      <InfoScam />
-      <Credit />
+      <InfoScam  data={cityData}/>
+      <Credit data={cityData} />
     </div>
   );
 }

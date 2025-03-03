@@ -17,7 +17,7 @@ export default function Home() {
       setLoading(true);
    
       axios
-        .get(`http://localhost:1337/api/destinations/${id}?populate=*`)  
+        .get(`http://localhost:1337/api/destinations/${id}?populate=shoopings.Shoppic`)  
         .then((response) => setDestination(response.data))
         .catch((error) => console.error("Error fetching destination:", error));
     }, [id]);
@@ -80,33 +80,47 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Best Shopping Location Section */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-6">Best Shopping Location</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1 */}
-            <div className="bg-white shadow-md rounded-lg p-4">
-              <img src="/images/malibu-beach-shop.jpg" alt="Malibu Beach Shopping" className="w-full h-48 object-cover rounded-t-lg" />
-              <h3 className="text-xl font-semibold mt-4 mb-2">Malibu Beach</h3>
-              <p className="text-gray-700">Explore the vibrant shops near the waves.</p>
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Best Shopping Locations</h2>
+
+    {destination.data.attributes.shoopings?.data.length > 0 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {destination.data.attributes.shoopings.data.map((shop) => {
+          return (
+            <div key={shop.id} className="bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-300 hover:scale-105">
+              <img
+                src={shop.attributes?.Shoppic?.data?.attributes?.url
+                  ? `http://localhost:1337${shop.attributes.Shoppic.data.attributes.url}`
+                  : "https://via.placeholder.com/100"}
+                alt={shop.attributes.Shopname}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{shop.attributes.Shopname}</h3>
+                <p className="text-gray-700 text-sm mb-4">{shop.attributes.ShopBio}</p>
+                <a
+                  href="https://maps.google.com/?q=28.7041,77.1025"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg font-semibold shadow-md transition"
+                >
+                  📍 View Location
+                </a>
+              </div>
             </div>
-            {/* Card 2 */}
-            <div className="bg-white shadow-md rounded-lg p-4">
-              <img src="/images/farmersmarket.jpg" alt="Farmersmarket" className="w-full h-48 object-cover rounded-t-lg" />
-              <h3 className="text-xl font-semibold mt-4 mb-2">Farmersmarket</h3>
-              <p className="text-gray-700">Shop for fresh produce and unique local crafts.</p>
-            </div>
-            {/* Card 3 */}
-            <div className="bg-white shadow-md rounded-lg p-4">
-              <img src="/images/lumber-yard.jpg" alt="Lumber Yard" className="w-full h-48 object-cover rounded-t-lg" />
-              <h3 className="text-xl font-semibold mt-4 mb-2">Lumber Yard</h3>
-              <p className="text-gray-700">A chic shopping destination with boutique stores.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+          );
+        })}
+      </div>
+    ) : (
+      <p className="text-gray-700 text-center text-lg">No shopping locations available.</p>
+    )}
+  </div>
+</section>
+
+
+
+
       </main>
     </div>
   );

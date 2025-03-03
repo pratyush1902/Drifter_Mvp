@@ -1,7 +1,7 @@
 import React from 'react';
 import { SunIcon, CloudIcon, ArrowDownIcon, UsersIcon, CalendarIcon } from '@heroicons/react/24/outline';
 
-const WeatherTourismCard = () => {
+const WeatherTourismCard = ({data}) => {
   return (
     <div className='flex items-center justify-center py-10 px-4'>
       <div className="w-full max-w-4xl mx-auto shadow-lg rounded-lg overflow-hidden bg-green-100 p-6">
@@ -13,13 +13,13 @@ const WeatherTourismCard = () => {
           <div className="flex flex-col md:flex-row text-gray-700 gap-4">
             <div className="flex items-center">
               <SunIcon className="h-5 w-5 text-yellow-500 mr-2" />
-              <p>Average Temperature: 22°C</p>
+              <p>Average Temperature: {data.Avgtemp}°C</p>
             </div>
             <div className="flex items-center">
               <CloudIcon className="h-5 w-5 text-red-500 mr-2" />
-              <p>Rainfall Chances: Yes</p>
+              <p>Rainfall Chances: {data.Rainfall}</p>
               <ArrowDownIcon className="h-5 w-5 text-blue-500 mx-2" />
-              <p>Snowfall Chances: No</p>
+              <p>Snowfall Chances: {data.Snowfall}</p>
             </div>
           </div>
         </div>
@@ -31,11 +31,11 @@ const WeatherTourismCard = () => {
           <div className="flex flex-col md:flex-row text-gray-700 gap-4">
             <div className="flex items-center">
               <UsersIcon className="h-5 w-5 text-green-500 mr-2" />
-              <p>Average Tourist Number: 1,000,000</p>
+              <p>Average Tourist Number: {data.NoOfTourist}</p>
             </div>
             <div className="flex items-center">
               <CalendarIcon className="h-5 w-5 text-blue-500 mr-2" />
-              <p>Season Type: Peak Season</p>
+              <p>Season Type: {data.Season}</p>
             </div>
           </div>
         </div>

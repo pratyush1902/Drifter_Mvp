@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { SiVisa, SiMastercard, SiGooglepay } from "react-icons/si"; // Icons for payment methods
 
 export default function Footer() {
   return (
@@ -23,7 +24,7 @@ export default function Footer() {
         
         {/* Social Media & Contact */}
         <div>
-          <h3 className=" font-poppins text-lg font-semibold text-white">Connect with Us</h3>
+          <h3 className="text-lg font-semibold text-white">Connect with Us</h3>
           <div className="flex space-x-4 mt-3">
             <a href="#" className="text-gray-400 hover:text-white text-xl"><FaFacebook /></a>
             <a href="#" className="text-gray-400 hover:text-white text-xl"><FaInstagram /></a>
@@ -31,6 +32,14 @@ export default function Footer() {
             <a href="#" className="text-gray-400 hover:text-white text-xl"><FaLinkedin /></a>
           </div>
           <p className="mt-4 text-sm">Email: support@drifter.com</p>
+          
+          {/* Payment Methods */}
+          <h3 className="text-lg font-semibold text-white mt-6">We Accept</h3>
+          <div className="flex space-x-4 mt-2">
+            <SiVisa className="text-gray-400 hover:text-white text-2xl" />
+            <SiMastercard className="text-gray-400 hover:text-white text-2xl" />
+            <SiGooglepay className="text-gray-400 hover:text-white text-2xl" /> {/* UPI Indicator */}
+          </div>
         </div>
       </div>
       

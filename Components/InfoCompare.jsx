@@ -1,18 +1,21 @@
 import React from 'react';
 
-const WhyVisitJuly = () => {
+const WhyVisitJuly = ({ data }) => {
+ const whyvisit=data.WhyVisit
+ const  whynotvist=data.WhynotVisit
   return (
     <div className="container mx-auto mt-10 p-4">
-      <h1 className=" font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">Why and Why Not to Visit in July</h1>
+      <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">
+        Why and Why Not to Visit in July
+      </h1>
       <div className="flex flex-wrap justify-center">
         <div className="w-full md:w-1/2 lg:w-1/3 p-4">
           <div className="shadow-lg rounded-lg p-6" style={{ backgroundColor: "#E0F4FF" }}>
             <h2 className="font-poppins text-2xl font-semibold mb-4">Why to</h2>
             <ul className="list-disc list-inside">
-              <li>Enjoy the summer festivals.</li>
-              <li>Beautiful beach weather.</li>
-              <li>Longer daylight hours.</li>
-              <li>Perfect time for outdoor activities.</li>
+              {whyvisit.map((whyvisit, index) => (
+                <li key={index}>{whyvisit}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -20,10 +23,9 @@ const WhyVisitJuly = () => {
           <div className="shadow-lg rounded-lg p-6" style={{ backgroundColor: "#FFC7EA" }}>
             <h2 className="font-poppins text-2xl font-semibold mb-4">Why not to</h2>
             <ul className="list-disc list-inside">
-              <li>Higher travel costs.</li>
-              <li>Crowded tourist spots.</li>
-              <li>Possible heatwaves.</li>
-              <li>Limited availability of accommodations.</li>
+              {  whynotvist.map((whynot, index) => (
+                <li key={index}>{whynot}</li>
+              ))}
             </ul>
           </div>
         </div>
