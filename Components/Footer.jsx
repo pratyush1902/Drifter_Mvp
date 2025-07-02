@@ -15,11 +15,11 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white">Quick Links</h3>
           <ul className="mt-2 space-y-2">
-            <li><a href="#" className="hover:text-white">About Us</a></li>
-            <li><a href="#" className="hover:text-white">Destinations</a></li>
-            <li><a href="#" className="hover:text-white">Join as a Vendor</a></li>
-            <li><a href="#" className="hover:text-white">Contact</a></li>
-          </ul>
+  <li><a href="/about" className="hover:text-white">About Us</a></li>
+  <li><a href="/destinations" className="hover:text-white">Destinations</a></li>
+  <li><a href="/vendor" className="hover:text-white">Join as a Vendor</a></li>
+  <li><a href="/contact" className="hover:text-white">Contact</a></li>
+</ul>
         </div>
         
         {/* Social Media & Contact */}

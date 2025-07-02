@@ -6,8 +6,11 @@ import Hero from "@/Components/Hero";
 import Top_place from "@/Components/Top_place";
 import Trending_place from "@/Components/Trending_place";
 import State from "@/Components/State";
+import Meghalaya from "@/Components/Meghalaya"
 import CommingSoon from "@/Components/CommingSoon";
 import Work from "@/Components/HowItWork";
+import Head from "next/head";
+import WelcomePopup from "@/Components/welcomepopup";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -61,38 +64,47 @@ export default function Page() {
   
     fetchUserData();
   }, [session]);
+  useEffect(() => {
+    document.title = "Drifter-Companion for Backpackers";
+  }, []);
   
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8">
-      <Hero />
-      <Top_place />
-      <Trending_place />
-      <State />
-      <Work />
-      <CommingSoon />
+    <>
+    
+      <div className="space-y-6 p-4 md:p-6 lg:p-8">
+        <WelcomePopup/>
+        <Hero />
+        <Top_place />
+        <Trending_place />
+        {/* <State /> */}
+        <Meghalaya/>
 
-      {/* Signup Popup */}
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
-            <h2 className="text-xl font-bold mb-4">Join Drifter Now!</h2>
-            <p className="mb-4">Sign up to explore personalized travel experiences.</p>
-            <button
-              onClick={() => signIn("google")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-            >
-              Sign Up with Google
-            </button>
-            <button
-              onClick={() => setShowPopup(false)}
-              className="ml-4 text-gray-600 hover:underline"
-            >
-              Maybe later
-            </button>
+        <Work />
+        <CommingSoon />
+
+        {/* Signup Popup */}
+        {showPopup && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
+              <h2 className="text-xl font-bold mb-4">Join Drifter Now!</h2>
+              <p className="mb-4">Sign up to explore personalized travel experiences.</p>
+              <button
+                onClick={() => signIn("google")}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Sign Up with Google
+              </button>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="ml-4 text-gray-600 hover:underline"
+              >
+                Maybe later
+              </button>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
