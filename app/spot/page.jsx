@@ -1,18 +1,23 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import Photo from '../../Components/PhotoGalary';
 import Reach from '../../Components/Spotreach';
 import Info from '../../Components/spotinfo';
+import HomePage from '@/Components/InfoActivity';
 
 function Page() {
   const [loading, setLoading] = useState(true);
+  const params = useParams();
+
+  const destinationId = params?.destinationId;
+  const spotId = params?.spotId;
 
   useEffect(() => {
-    // Simulate loading delay of 2 seconds (you can replace this with an actual data fetch)
     const timer = setTimeout(() => {
-      setLoading(false); // After 2 seconds, set loading to false
+      setLoading(false);
     }, 2000);
-
-    // Cleanup the timer if the component unmounts
     return () => clearTimeout(timer);
   }, []);
 
@@ -34,6 +39,7 @@ function Page() {
       <Photo />
       <Reach />
       <Info />
+      <HomePage destinationId={destinationId} spotId={spotId} />
     </div>
   );
 }

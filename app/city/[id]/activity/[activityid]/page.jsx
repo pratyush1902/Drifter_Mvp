@@ -115,9 +115,14 @@ export default function ActivityPage() {
   const faqs = attributes?.faq || [];
   const locationEmbedUrl = attributes?.location || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.442732451842!2d77.3121872748427!3d32.00949877463447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904578f19c11f61%3A0x3ecbe8c5b2f947db!2sKasol%2C%20Himachal%20Pradesh%20175105!5e0!3m2!1sen!2sin!4v1720013569041!5m2!1sen!2sin";
   const images = attributes?.images?.data?.map((img) => img.attributes.url) || [
-    " https://unsplash.com/photos/body-of-water-and-snow-covered-mountains-during-daytime-YFFGkE3y4F8",
-    "https://source.unsplash.com/random/800x600/?camping",
-    "https://source.unsplash.com/random/800x600/?adventure"
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+    
   ];
 
   
@@ -182,6 +187,25 @@ export default function ActivityPage() {
           <RazorpayButton amount={activityPrice * numPersons} activityId={activityid} activityName={activityName} phone={phone} numPersons={numPersons} bookingDate={bookingDate} userEmail={session?.user?.email} userName={session?.user?.name} />
         </form>
       </motion.div>
+       {/* Vendor Introduction Section */}
+      <div className="bg-white rounded-xl shadow p-6 flex flex-col md:flex-row gap-6 items-center">
+        <img src="https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vendor" className="w-48 h-48 rounded-full object-cover" />
+        <div>
+          <h2 className="text-2xl font-bold mb-2">Meet Your Host</h2>
+          <p className="text-gray-700">Hi, I'm Ravi, your local guide for this experience. With over 5 years of experience in adventure tourism, I ensure your safety and enjoyment throughout the trip. Looking forward to hosting you!</p>
+        </div>
+      </div>
+
+      {/* Terms & Conditions */}
+      <div className="bg-gray-100 rounded-xl p-6">
+        <h2 className="text-xl font-bold mb-4">📜 Terms & Conditions</h2>
+        <ul className="list-disc list-inside space-y-2 text-gray-700">
+          <li>50% refund if canceled 48 hours before the activity.</li>
+          <li>No refund for no-shows or late arrivals.</li>
+          <li>Participants must carry valid ID proof.</li>
+          <li>Activity might be rescheduled in case of extreme weather.</li>
+        </ul>
+      </div>
 
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto">

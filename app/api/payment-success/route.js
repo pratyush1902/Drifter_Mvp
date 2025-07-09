@@ -1,14 +1,28 @@
 import nodemailer from "nodemailer";
+import crypto from "crypto"; // For generating unique orderId
 
 export async function POST(req) {
   try {
     const body = await req.text();
     console.log("Received Data:", body);
 
-    const { activityId, userEmail, userName, phone, numPersons, amount, paymentId } = JSON.parse(body);
+    const {
+      activityId,
+      userEmail,
+      userName,
+      phone,
+      numPersons,
+      amount,
+      paymentId
+    } = JSON.parse(body);
 
     if (!activityId || !userEmail || !amount || !paymentId) {
-      console.error("Missing required fields:", { activityId, userEmail, amount, paymentId });
+      console.error("Missing required fields:", {
+        activityId,
+        userEmail,
+        amount,
+        paymentId,
+      });
       return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400 });
     }
 
@@ -16,6 +30,10 @@ export async function POST(req) {
 
     const bookingDate = new Date().toISOString();
 
+    // ✅ Generate a unique Order ID
+    const orderId = "ORD-" + crypto.randomBytes(4).toString("hex").toUpperCase();
+
+    // ✅ Send booking info to Strapi
     const response = await fetch("http://localhost:1337/api/bookings", {
       method: "POST",
       headers: {
@@ -30,7 +48,8 @@ export async function POST(req) {
           phone: phone || "N/A",
           num_persons: numPersons || 1,
           total_amount: amount || 0,
-          payment_id: paymentId,
+          order_id: orderId,        // ✅ New
+          payment_id: paymentId,    // ✅ Existing
           payment_status: "success",
           booking_date: bookingDate,
         },
@@ -43,7 +62,7 @@ export async function POST(req) {
     if (response.ok) {
       const bookingId = responseData.data.id;
 
-      // ✅ Try sending email, but don't let failure block booking
+      // ✅ Try to send confirmation email
       try {
         await sendEmail(userEmail, userName, bookingId, amount);
         console.log("✅ Email sent to user");
@@ -56,6 +75,7 @@ export async function POST(req) {
           success: true,
           message: "Booking successful",
           bookingId,
+          orderId,
         }),
         { status: 200 }
       );
@@ -74,12 +94,13 @@ export async function POST(req) {
   }
 }
 
+// ✅ Email function stays the same
 async function sendEmail(email, name, bookingId, amount) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "pratyushbndm@gmail.com",        // ✅ Use your actual Gmail
-      pass: "cyaxgcyknvdnnfac",      // ✅ Use your Gmail App Password (no spaces)
+      user: "pratyushbndm@gmail.com",
+      pass: "cyaxgcyknvdnnfac", // Gmail App Password
     },
   });
 

@@ -61,6 +61,9 @@ function Navbar() {
                 <li>
                   <Link href="/profile">Profile</Link>
                 </li>
+                <li><Link href="/bookingHistory" className="block px-4 py-2 hover:bg-gray-100">
+  🧾 My Bookings
+</Link></li>
                 <li>
                   <button onClick={() => signOut()}>Logout</button>
                 </li>

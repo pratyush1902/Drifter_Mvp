@@ -4,7 +4,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export default function RazorpayButton({ amount, activityId, phone, numPersons, userEmail, userName }) {
+export default function RazorpayButton({
+  amount,
+  activityId,
+  activityName,
+  phone,
+  numPersons,
+  userEmail,
+  userName,
+  bookingDate, // ✅ using original field name
+}) {
   const router = useRouter();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
@@ -33,7 +42,6 @@ export default function RazorpayButton({ amount, activityId, phone, numPersons, 
 
     setLoading(true);
     try {
-      // Step 1: Create an order with Razorpay
       const response = await fetch("/api/razorpay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -43,8 +51,6 @@ export default function RazorpayButton({ amount, activityId, phone, numPersons, 
       const data = await response.json();
       if (!data.success) throw new Error("Payment initiation failed");
 
-      const bookingDate = new Date().toISOString(); // ✅ Ensure booking date is captured
-
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY,
         amount: data.order.amount,
@@ -53,21 +59,18 @@ export default function RazorpayButton({ amount, activityId, phone, numPersons, 
         description: "Activity Booking",
         order_id: data.order.id,
         handler: async (paymentResponse) => {
-          console.log("Payment Successful:", paymentResponse);
-
           const paymentData = {
-            orderId: data.order.id, // ✅ Store Order ID
-            paymentId: paymentResponse.razorpay_payment_id, // ✅ Store Payment ID
+            orderId: data.order.id,
+            paymentId: paymentResponse.razorpay_payment_id,
             activityId,
             userEmail,
             userName: userName || "Guest",
             phone: phone || "N/A",
             numPersons: numPersons || 1,
             amount,
-            bookingDate, // ✅ Store formatted booking date
+            bookingDate, // ✅ correctly used here
           };
 
-          // Step 2: Save booking details in Strapi
           const paymentResult = await fetch("/api/payment-success", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -81,7 +84,11 @@ export default function RazorpayButton({ amount, activityId, phone, numPersons, 
             router.push("/failure");
           }
         },
-        prefill: { name: userName, email: userEmail, contact: phone },
+        prefill: {
+          name: userName,
+          email: userEmail,
+          contact: phone,
+        },
         theme: { color: "#3399cc" },
       };
 
