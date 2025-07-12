@@ -11,6 +11,7 @@ import CommingSoon from "@/Components/CommingSoon";
 import Work from "@/Components/HowItWork";
 import Head from "next/head";
 import WelcomePopup from "@/Components/welcomepopup";
+import TestimonialCarousel from "@/components/TestimonialCarousel"
 
 export default function Page() {
   const { data: session } = useSession();
@@ -79,6 +80,10 @@ export default function Page() {
         <Trending_place />
         {/* <State /> */}
         <Meghalaya/>
+        <div className="my-20">
+         
+        <TestimonialCarousel />
+      </div>
 
         <Work />
         <CommingSoon />

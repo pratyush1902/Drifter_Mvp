@@ -9,6 +9,7 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -22,6 +23,8 @@ module.exports = {
       fontFamily: {
         poppins: "var(--font-poppins), sans-serif",
         roboto: "var(--font-roboto), sans-serif",
+          heading: ['Poppins', 'sans-serif'],
+  body: ['Inter', 'sans-serif'],
       },
     },
   },

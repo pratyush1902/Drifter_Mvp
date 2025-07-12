@@ -178,13 +178,20 @@ export default function ActivityPage() {
           <input type="date" value={bookingDate} onChange={(e) => setBookingDate(e.target.value)} className="w-full p-4 border rounded-lg" />
           <div className="flex items-center justify-between">
             <label className="text-lg font-semibold">Number of Persons:</label>
+            
             <div className="flex items-center space-x-4">
+              
               <button type="button" onClick={() => setNumPersons(numPersons > 1 ? numPersons - 1 : 1)} className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">-</button>
               <span className="text-lg font-semibold">{numPersons}</span>
               <button type="button" onClick={() => setNumPersons(numPersons + 1)} className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">+</button>
             </div>
+           
           </div>
           <RazorpayButton amount={activityPrice * numPersons} activityId={activityid} activityName={activityName} phone={phone} numPersons={numPersons} bookingDate={bookingDate} userEmail={session?.user?.email} userName={session?.user?.name} />
+           <p className="text-sm text-gray-600 mt-2">
+  🔒 Secure payment via Razorpay | 💬 Need help? <a href="https://wa.me/91XXXXXXXXXX" className="text-blue-500 underline">Chat with us</a>
+</p>
+
         </form>
       </motion.div>
        {/* Vendor Introduction Section */}
