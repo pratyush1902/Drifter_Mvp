@@ -12,7 +12,7 @@ export default function RazorpayButton({
   numPersons,
   userEmail,
   userName,
-  bookingDate, // ✅ using original field name
+  bookingDate, // ✅ received here
 }) {
   const router = useRouter();
   const { data: session } = useSession();
@@ -68,7 +68,7 @@ export default function RazorpayButton({
             phone: phone || "N/A",
             numPersons: numPersons || 1,
             amount,
-            bookingDate, // ✅ correctly used here
+            bookingDate, // ✅ passed to backend
           };
 
           const paymentResult = await fetch("/api/payment-success", {
@@ -79,7 +79,9 @@ export default function RazorpayButton({
 
           const resultData = await paymentResult.json();
           if (resultData.success && resultData.bookingId) {
-            router.push(`/success?bookingId=${resultData.bookingId}`);
+            router.push(
+              `/success?bookingId=${resultData.bookingId}&bookingDate=${encodeURIComponent(bookingDate)}`
+            );
           } else {
             router.push("/failure");
           }
