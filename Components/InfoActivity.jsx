@@ -6,11 +6,11 @@ import axios from 'axios';
 
 const HomePage = ({ destinationId, spotId }) => {
   const categoryIcons = {
-    'River Rafting': "https://cdn-icons-png.flaticon.com/512/10806/10806202.png",
-    'Food Walk': "https://cdn.vectorstock.com/i/500p/10/07/a-refreshing-modern-logo-icon-featuring-vibrant-vector-56801007.jpg",
-    'Cycle Tour': "https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/bicycle.png",
-    'Trek&Trails': "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0aW0IHLn0SBD3vvseeJ-tic2QFvAwgA0Vrw&s",
-    'City Tour': "https://cdn-icons-png.freepik.com/512/3474/3474041.png"
+    'Adventure': "https://cdn-icons-png.flaticon.com/512/10806/10806202.png",
+    'Culture': "https://cdn-icons-png.flaticon.com/512/10053/10053799.png",
+    'Nature': "https://cdn-icons-png.flaticon.com/512/8044/8044650.png",
+    'Food': "https://cdn-icons-png.flaticon.com/512/5235/5235253.png",
+    'Green': "https://cdn-icons-png.freepik.com/512/3474/3474041.png"
   };
 
   const [activities, setActivities] = useState([]);
@@ -71,7 +71,7 @@ const HomePage = ({ destinationId, spotId }) => {
       </h1>
 
       <div className="flex flex-wrap justify-center gap-4 mb-6">
-        {['All', 'River Rafting', 'Food Walk', 'Cycle Tour', 'Trek&Trails', 'City Tour'].map(category => (
+        {['All', 'Adventure', 'Culture', 'Nature', 'Food', 'Green'].map(category => (
           <button
             key={category}
             className={`px-3 py-2 sm:px-5 sm:py-3 text-sm sm:text-base rounded-xl font-medium flex items-center transition-all ${

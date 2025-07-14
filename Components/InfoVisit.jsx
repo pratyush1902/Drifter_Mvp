@@ -2,10 +2,10 @@
 import { useState } from 'react';
 
 const categories = [
-  { label: 'Beaches', icon: 'https://static-00.iconduck.com/assets.00/beach-icon-512x441-ow4q6h9s.png' },
-  { label: 'trek', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwY2WteL2O9Tbk66h1tHTgtv6OYfsG5_lFw&s' },
-  { label: ' Touristy', icon: 'https://cdn-icons-png.flaticon.com/512/7603/7603144.png' },
-  { label: 'Camping', icon: 'https://cdn-icons-png.flaticon.com/512/9173/9173952.png' },
+  { label: 'Nature', icon: 'https://static-00.iconduck.com/assets.00/beach-icon-512x441-ow4q6h9s.png' },
+  { label: 'Adventure', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwY2WteL2O9Tbk66h1tHTgtv6OYfsG5_lFw&s' },
+  { label: 'Culture', icon: 'https://cdn-icons-png.flaticon.com/512/7603/7603144.png' },
+  { label: 'Food', icon: 'https://cdn-icons-png.flaticon.com/512/5235/5235253.png' },
   { label: 'Off beat', icon: 'https://static.vecteezy.com/system/resources/previews/005/988/954/original/hidden-icon-free-vector.jpg' },
  
  

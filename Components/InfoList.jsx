@@ -15,10 +15,10 @@ const categoryColors = {
 
 const categories = [
   { label: "All", icon: "https://cdn-icons-png.flaticon.com/512/5268/5268510.png" },
-  { label: "Beaches", icon: "https://cdn-icons-png.flaticon.com/512/6205/6205309.png" },
-  { label: "Trek", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwY2WteL2O9Tbk66h1tHTgtv6OYfsG5_lFw&s" },
-  { label: "Touristy", icon: "https://cdn-icons-png.flaticon.com/512/7603/7603144.png" },
-  { label: "Camping", icon: "https://cdn-icons-png.flaticon.com/512/9173/9173952.png" },
+  { label: "Nature", icon: "https://cdn-icons-png.flaticon.com/512/6205/6205309.png" },
+  { label: "Adventure", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwY2WteL2O9Tbk66h1tHTgtv6OYfsG5_lFw&s" },
+  { label: "Culture", icon: "https://cdn-icons-png.flaticon.com/512/10053/10053799.png" },
+  { label: "Food", icon: "https://cdn-icons-png.flaticon.com/512/5235/5235253.png" },
   { label: "Offbeat", icon: "https://static.vecteezy.com/system/resources/previews/005/988/954/original/hidden-icon-free-vector.jpg" },
 ];
 
